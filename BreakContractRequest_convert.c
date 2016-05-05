@@ -100,11 +100,17 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		if(tag == NoPartyIDs){
 			COUNT repeatLength = atol(field_ele->field_value);
 			(BreakContractRequest*)object->NoPartyIDsCount = repeatLength;
+			BUFFER imixAllChild[MAX_MSG_LEN + 1];
+			returnValue =getChild(imix_str, field_ele, &imixAllChild);
+			if(returnValue == FALSE){
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
+				return returnValue;
+			}
 			for(int j=0;j<repeatLength;++j){
 				BUFFER imixChild[MAX_MSG_LEN + 1];
-				returnValue =getChild(imix_str, field_ele, j, &imixChild);
+				returnValue =getChildByIndex(imixAllChild, field_ele, j, imixChild);
 				if(returnValue == FALSE){
-					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
+					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
 				}
 				returnValue = BreakContractRequest_convert_inner(imixChild, strlen(imixChild), &object->NoPartyIDsArray[j]);
@@ -206,11 +212,17 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		if(tag == NoAccountInfo){
 			COUNT repeatLength = atol(field_ele->field_value);
 			(NoPartyIDs*)object->NoAccountInfoCount = repeatLength;
+			BUFFER imixAllChild[MAX_MSG_LEN + 1];
+			returnValue =getChild(imix_str, field_ele, &imixAllChild);
+			if(returnValue == FALSE){
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
+				return returnValue;
+			}
 			for(int j=0;j<repeatLength;++j){
 				BUFFER imixChild[MAX_MSG_LEN + 1];
-				returnValue =getChild(imix_str, field_ele, j, &imixChild);
+				returnValue =getChildByIndex(imixAllChild, field_ele, j, imixChild);
 				if(returnValue == FALSE){
-					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
+					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
 				}
 				returnValue = BreakContractRequest_convert_inner(imixChild, strlen(imixChild), &object->NoAccountInfoArray[j]);
@@ -236,11 +248,17 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		if(tag == NoContactInfos){
 			COUNT repeatLength = atol(field_ele->field_value);
 			(NoPartyIDs*)object->NoContactInfosCount = repeatLength;
+			BUFFER imixAllChild[MAX_MSG_LEN + 1];
+			returnValue =getChild(imix_str, field_ele, &imixAllChild);
+			if(returnValue == FALSE){
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
+				return returnValue;
+			}
 			for(int j=0;j<repeatLength;++j){
 				BUFFER imixChild[MAX_MSG_LEN + 1];
-				returnValue =getChild(imix_str, field_ele, j, &imixChild);
+				returnValue =getChildByIndex(imixAllChild, field_ele, j, imixChild);
 				if(returnValue == FALSE){
-					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
+					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
 				}
 				returnValue = BreakContractRequest_convert_inner(imixChild, strlen(imixChild), &object->NoContactInfosArray[j]);
@@ -262,11 +280,17 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		if(tag == NoPrvlges){
 			COUNT repeatLength = atol(field_ele->field_value);
 			(NoPartyIDs*)object->NoPrvlgesCount = repeatLength;
+			BUFFER imixAllChild[MAX_MSG_LEN + 1];
+			returnValue =getChild(imix_str, field_ele, &imixAllChild);
+			if(returnValue == FALSE){
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
+				return returnValue;
+			}
 			for(int j=0;j<repeatLength;++j){
 				BUFFER imixChild[MAX_MSG_LEN + 1];
-				returnValue =getChild(imix_str, field_ele, j, &imixChild);
+				returnValue =getChildByIndex(imixAllChild, field_ele, j, imixChild);
 				if(returnValue == FALSE){
-					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
+					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
 				}
 				returnValue = BreakContractRequest_convert_inner(imixChild, strlen(imixChild), &object->NoPrvlgesArray[j]);
@@ -304,11 +328,17 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		if(tag == NoPartySubIDs){
 			COUNT repeatLength = atol(field_ele->field_value);
 			(NoPartyIDs*)object->NoPartySubIDsCount = repeatLength;
+			BUFFER imixAllChild[MAX_MSG_LEN + 1];
+			returnValue =getChild(imix_str, field_ele, &imixAllChild);
+			if(returnValue == FALSE){
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
+				return returnValue;
+			}
 			for(int j=0;j<repeatLength;++j){
 				BUFFER imixChild[MAX_MSG_LEN + 1];
-				returnValue =getChild(imix_str, field_ele, j, &imixChild);
+				returnValue =getChildByIndex(imixAllChild, field_ele, j, imixChild);
 				if(returnValue == FALSE){
-					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
+					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
 				}
 				returnValue = BreakContractRequest_convert_inner(imixChild, strlen(imixChild), &object->NoPartySubIDsArray[j]);
@@ -333,4 +363,86 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 
 	}
 
+}
+
+BOOL getNodes(BUFFER* imix_str, LNGTH inputmsglength, FIELD_DETAILS *field_array, COUNT *filed_array_length){
+	FIELD_DETAILS tempFieldArray[256];
+	COUNT tempFieldArrayCount = 0;
+	for(int i=0;;++i){
+		CHAR* ptrfix_str = NULL;
+		CHAR* tagValStr = (CHAR*)strtok_r(imix_str, SOH, &ptrfix_str);
+		if(!tagValStr) break;
+		if(parseTagValStr(&tempFieldArray[i], tagValStr) != TRUE){
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "parseTagValStr failed");
+			return false;
+		}
+		++tempFieldArrayCount;
+	}
+	if(tempFieldArrayCount>0){
+		INDC level = getLevel(atoi(tempFieldArray[0].field_name));
+		*filed_array_length = 0;
+		for(int i=0;i<tempFieldArrayCount;++i){
+			INDC tempLevel = getLevel(atoi(tempFieldArray[i].field_name));
+			if(tempLevel == level){
+				field_array[*filed_array_length] = tempFieldArray[i];
+				*filed_array_length++;
+		}
+	}
+	return TRUE;
+}
+
+BOOL getChildByIndex(BUFFER* all_child_imix_str, FIELD_DETAILS* field_ele, COUNT index, BUFFER* child_imix_str){
+}
+
+BOOL getChild(BUFFER* imix_str, FIELD_DETAILS* field_ele, BUFFER* all_child_imix_str){
+}
+
+INT getLevel(tag){
+	if(BreakContractRequestID == tag){return 0;}
+	if(BreakContractRequestType == tag){return 0;}
+	if(ExecID == tag){return 0;}
+	if(TradeDate == tag){return 0;}
+	if(TradeTime == tag){return 0;}
+	if(TransactTime == tag){return 0;}
+	if(NoPartyIDs == tag){return 0;}
+	if(PartyID == tag){return 1;}
+	if(AccountCurrency == tag){return 1;}
+	if(AccountInfoIDType == tag){return 1;}
+	if(AccountValidityFrom == tag){return 1;}
+	if(AccountValidityTo == tag){return 1;}
+	if(BranchIndicator == tag){return 1;}
+	if(CheckAmount == tag){return 1;}
+	if(CreditRating == tag){return 1;}
+	if(Industry == tag){return 1;}
+	if(IsBank == tag){return 1;}
+	if(IsCustody == tag){return 1;}
+	if(IsGuarantee == tag){return 1;}
+	if(IsIssuer == tag){return 1;}
+	if(Issuer == tag){return 1;}
+	if(ParentPartyID == tag){return 1;}
+	if(PartyIDAttr == tag){return 1;}
+	if(PartyIDSource == tag){return 1;}
+	if(PartyRole == tag){return 1;}
+	if(PartyTransType == tag){return 1;}
+	if(PreferIndicator == tag){return 1;}
+	if(SettlRouteSeq == tag){return 1;}
+	if(UserStatus == tag){return 1;}
+	if(NoAccountInfo == tag){return 1;}
+	if(AccountInfoID == tag){return 2;}
+	if(AccountInfoIDType == tag){return 2;}
+	if(Currency == tag){return 2;}
+	if(NoContactInfos == tag){return 1;}
+	if(ContactInfoID == tag){return 2;}
+	if(ContactInfoIDType == tag){return 2;}
+	if(NoPrvlges == tag){return 1;}
+	if(PrvlgeCategory == tag){return 2;}
+	if(MarketIndicator == tag){return 2;}
+	if(PrvlgeIndicator == tag){return 2;}
+	if(QuoteType == tag){return 2;}
+	if(Side == tag){return 2;}
+	if(TradeMethod == tag){return 2;}
+	if(NoPartySubIDs == tag){return 1;}
+	if(PartySubID == tag){return 2;}
+	if(Description == tag){return 2;}
+	if(PartySubIDType == tag){return 2;}
 }
