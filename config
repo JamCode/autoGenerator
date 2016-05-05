@@ -1,0 +1,38 @@
+exports.convertConfig = {
+    imix:{
+        imix0: {
+            map: 'a',
+            type: 'long',
+            index: false
+        },
+        imix1: {
+            map: 'b',
+            type: 'string',
+            length: 'DATE_LNGTH',
+            index: false
+        },
+        imix2: {
+            repeat: true,
+            data:{
+                imix21: {
+                    map: 'sPostCrmBody.iSide', //sPostCrmBody[i].iSide = sss
+                    type: 'double',
+                    index: true
+                },
+                imix22: {
+                    map: 'd',
+                    type: 'long',
+                    index: true
+                }
+            }
+        }
+    },
+
+    struct: 'EntyMaster',
+    funcName: 'funcMain', //BOOL funcMain(BUFFER* imix_str, LNGTH inputmsglength, EntyMaster* object, COUNT index)
+    getNodes: 'getNodes', //BOOL getNodes(BUFFER* imix_str, LNGTH inputmsglength, FIELD_DETAILS *field_array, COUNT *filed_array_length)
+    getChild: 'getChild', //BOOL getChild(BUFFER* imix_str, FIELD_DETAILS* field_ele, COUNT index, BUFFER* child_imix_str)
+    getLevel: 'getLevel', //INT getLevel(tag)
+    fileName: 'funcMain.c',
+    maxFieldCount: 256
+};
