@@ -65,7 +65,7 @@ struct NoPartySubIDs{
 BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, char* object){
 	FIELD_DETAILS field_array[256];
 	COUNT filed_array_length = 0;
-	BOOL returnValue=getNodes(imix_str, inputmsglength, &field_array, &filed_array_length);
+	BOOL returnValue = getNodes(imix_str, inputmsglength, &field_array, &filed_array_length);
 	if(returnValue == FALSE){
 		ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getNodes failed");
 		return returnValue;
@@ -74,41 +74,41 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		FIELD_DETAILS *field_ele = &field_array[i];
 		INDC tag = atoi(field_ele->field_name);
 		if(tag == BreakContractRequestID){
-			(BreakContractRequest*)object->BreakContractRequestID=field_ele->field_value
+			(BreakContractRequest*)object->BreakContractRequestID=field_ele->field_value;
 		}
 
 		if(tag == BreakContractRequestType){
-			(BreakContractRequest*)object->BreakContractRequestType=field_ele->field_value
+			(BreakContractRequest*)object->BreakContractRequestType=field_ele->field_value;
 		}
 
 		if(tag == ExecID){
-			(BreakContractRequest*)object->ExecID=field_ele->field_value
+			(BreakContractRequest*)object->ExecID=field_ele->field_value;
 		}
 
 		if(tag == TradeDate){
-			(BreakContractRequest*)object->TradeDate=field_ele->field_value
+			(BreakContractRequest*)object->TradeDate=field_ele->field_value;
 		}
 
 		if(tag == TradeTime){
-			(BreakContractRequest*)object->TradeTime=field_ele->field_value
+			(BreakContractRequest*)object->TradeTime=field_ele->field_value;
 		}
 
 		if(tag == TransactTime){
-			(BreakContractRequest*)object->TransactTime=field_ele->field_value
+			(BreakContractRequest*)object->TransactTime=field_ele->field_value;
 		}
 
 		if(tag == NoPartyIDs){
 			COUNT repeatLength = atol(field_ele->field_value);
 			(BreakContractRequest*)object->NoPartyIDsCount = repeatLength;
 			BUFFER imixAllChild[MAX_MSG_LEN + 1];
-			returnValue =getChild(imix_str, field_ele, &imixAllChild);
+			returnValue = getChild(imix_str, field_ele, &imixAllChild);
 			if(returnValue == FALSE){
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
 			}
 			for(int j=0;j<repeatLength;++j){
 				BUFFER imixChild[MAX_MSG_LEN + 1];
-				returnValue =getChildByIndex(imixAllChild, field_ele, j, imixChild);
+				returnValue = getChildByIndex(imixAllChild, field_ele, j, imixChild);
 				if(returnValue == FALSE){
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
@@ -122,105 +122,105 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		}
 
 		if(tag == PartyID){
-			(NoPartyIDs*)object->PartyID=field_ele->field_value
+			(NoPartyIDs*)object->PartyID=field_ele->field_value;
 		}
 
 		if(tag == AccountCurrency){
-			(NoPartyIDs*)object->AccountCurrency=field_ele->field_value
+			(NoPartyIDs*)object->AccountCurrency=field_ele->field_value;
 		}
 
 		if(tag == AccountInfoIDType){
-			(NoPartyIDs*)object->AccountInfoIDType=field_ele->field_value
+			(NoPartyIDs*)object->AccountInfoIDType=field_ele->field_value;
 		}
 
 		if(tag == AccountValidityFrom){
-			(NoPartyIDs*)object->AccountValidityFrom=field_ele->field_value
+			(NoPartyIDs*)object->AccountValidityFrom=field_ele->field_value;
 		}
 
 		if(tag == AccountValidityTo){
-			(NoPartyIDs*)object->AccountValidityTo=field_ele->field_value
+			(NoPartyIDs*)object->AccountValidityTo=field_ele->field_value;
 		}
 
 		if(tag == BranchIndicator){
-			(NoPartyIDs*)object->BranchIndicator=field_ele->field_value
+			(NoPartyIDs*)object->BranchIndicator=field_ele->field_value;
 		}
 
 		if(tag == CheckAmount){
-			(NoPartyIDs*)object->CheckAmount=field_ele->field_value
+			(NoPartyIDs*)object->CheckAmount=field_ele->field_value;
 		}
 
 		if(tag == CreditRating){
-			(NoPartyIDs*)object->CreditRating=field_ele->field_value
+			(NoPartyIDs*)object->CreditRating=field_ele->field_value;
 		}
 
 		if(tag == Industry){
-			(NoPartyIDs*)object->Industry=field_ele->field_value
+			(NoPartyIDs*)object->Industry=field_ele->field_value;
 		}
 
 		if(tag == IsBank){
-			(NoPartyIDs*)object->IsBank=field_ele->field_value
+			(NoPartyIDs*)object->IsBank=field_ele->field_value;
 		}
 
 		if(tag == IsCustody){
-			(NoPartyIDs*)object->IsCustody=field_ele->field_value
+			(NoPartyIDs*)object->IsCustody=field_ele->field_value;
 		}
 
 		if(tag == IsGuarantee){
-			(NoPartyIDs*)object->IsGuarantee=field_ele->field_value
+			(NoPartyIDs*)object->IsGuarantee=field_ele->field_value;
 		}
 
 		if(tag == IsIssuer){
-			(NoPartyIDs*)object->IsIssuer=field_ele->field_value
+			(NoPartyIDs*)object->IsIssuer=field_ele->field_value;
 		}
 
 		if(tag == Issuer){
-			(NoPartyIDs*)object->Issuer=field_ele->field_value
+			(NoPartyIDs*)object->Issuer=field_ele->field_value;
 		}
 
 		if(tag == ParentPartyID){
-			(NoPartyIDs*)object->ParentPartyID=field_ele->field_value
+			(NoPartyIDs*)object->ParentPartyID=field_ele->field_value;
 		}
 
 		if(tag == PartyIDAttr){
-			(NoPartyIDs*)object->PartyIDAttr=field_ele->field_value
+			(NoPartyIDs*)object->PartyIDAttr=field_ele->field_value;
 		}
 
 		if(tag == PartyIDSource){
-			(NoPartyIDs*)object->PartyIDSource=field_ele->field_value
+			(NoPartyIDs*)object->PartyIDSource=field_ele->field_value;
 		}
 
 		if(tag == PartyRole){
-			(NoPartyIDs*)object->PartyRole=field_ele->field_value
+			(NoPartyIDs*)object->PartyRole=field_ele->field_value;
 		}
 
 		if(tag == PartyTransType){
-			(NoPartyIDs*)object->PartyTransType=field_ele->field_value
+			(NoPartyIDs*)object->PartyTransType=field_ele->field_value;
 		}
 
 		if(tag == PreferIndicator){
-			(NoPartyIDs*)object->PreferIndicator=field_ele->field_value
+			(NoPartyIDs*)object->PreferIndicator=field_ele->field_value;
 		}
 
 		if(tag == SettlRouteSeq){
-			(NoPartyIDs*)object->SettlRouteSeq=field_ele->field_value
+			(NoPartyIDs*)object->SettlRouteSeq=field_ele->field_value;
 		}
 
 		if(tag == UserStatus){
-			(NoPartyIDs*)object->UserStatus=field_ele->field_value
+			(NoPartyIDs*)object->UserStatus=field_ele->field_value;
 		}
 
 		if(tag == NoAccountInfo){
 			COUNT repeatLength = atol(field_ele->field_value);
 			(NoPartyIDs*)object->NoAccountInfoCount = repeatLength;
 			BUFFER imixAllChild[MAX_MSG_LEN + 1];
-			returnValue =getChild(imix_str, field_ele, &imixAllChild);
+			returnValue = getChild(imix_str, field_ele, &imixAllChild);
 			if(returnValue == FALSE){
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
 			}
 			for(int j=0;j<repeatLength;++j){
 				BUFFER imixChild[MAX_MSG_LEN + 1];
-				returnValue =getChildByIndex(imixAllChild, field_ele, j, imixChild);
+				returnValue = getChildByIndex(imixAllChild, field_ele, j, imixChild);
 				if(returnValue == FALSE){
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
@@ -234,29 +234,29 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		}
 
 		if(tag == AccountInfoID){
-			(NoAccountInfo*)object->AccountInfoID=field_ele->field_value
+			(NoAccountInfo*)object->AccountInfoID=field_ele->field_value;
 		}
 
 		if(tag == AccountInfoIDType){
-			(NoAccountInfo*)object->AccountInfoIDType=field_ele->field_value
+			(NoAccountInfo*)object->AccountInfoIDType=field_ele->field_value;
 		}
 
 		if(tag == Currency){
-			(NoAccountInfo*)object->Currency=field_ele->field_value
+			(NoAccountInfo*)object->Currency=field_ele->field_value;
 		}
 
 		if(tag == NoContactInfos){
 			COUNT repeatLength = atol(field_ele->field_value);
 			(NoPartyIDs*)object->NoContactInfosCount = repeatLength;
 			BUFFER imixAllChild[MAX_MSG_LEN + 1];
-			returnValue =getChild(imix_str, field_ele, &imixAllChild);
+			returnValue = getChild(imix_str, field_ele, &imixAllChild);
 			if(returnValue == FALSE){
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
 			}
 			for(int j=0;j<repeatLength;++j){
 				BUFFER imixChild[MAX_MSG_LEN + 1];
-				returnValue =getChildByIndex(imixAllChild, field_ele, j, imixChild);
+				returnValue = getChildByIndex(imixAllChild, field_ele, j, imixChild);
 				if(returnValue == FALSE){
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
@@ -270,25 +270,25 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		}
 
 		if(tag == ContactInfoID){
-			(NoContactInfos*)object->ContactInfoID=field_ele->field_value
+			(NoContactInfos*)object->ContactInfoID=field_ele->field_value;
 		}
 
 		if(tag == ContactInfoIDType){
-			(NoContactInfos*)object->ContactInfoIDType=field_ele->field_value
+			(NoContactInfos*)object->ContactInfoIDType=field_ele->field_value;
 		}
 
 		if(tag == NoPrvlges){
 			COUNT repeatLength = atol(field_ele->field_value);
 			(NoPartyIDs*)object->NoPrvlgesCount = repeatLength;
 			BUFFER imixAllChild[MAX_MSG_LEN + 1];
-			returnValue =getChild(imix_str, field_ele, &imixAllChild);
+			returnValue = getChild(imix_str, field_ele, &imixAllChild);
 			if(returnValue == FALSE){
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
 			}
 			for(int j=0;j<repeatLength;++j){
 				BUFFER imixChild[MAX_MSG_LEN + 1];
-				returnValue =getChildByIndex(imixAllChild, field_ele, j, imixChild);
+				returnValue = getChildByIndex(imixAllChild, field_ele, j, imixChild);
 				if(returnValue == FALSE){
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
@@ -302,41 +302,41 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		}
 
 		if(tag == PrvlgeCategory){
-			(NoPrvlges*)object->PrvlgeCategory=field_ele->field_value
+			(NoPrvlges*)object->PrvlgeCategory=field_ele->field_value;
 		}
 
 		if(tag == MarketIndicator){
-			(NoPrvlges*)object->MarketIndicator=field_ele->field_value
+			(NoPrvlges*)object->MarketIndicator=field_ele->field_value;
 		}
 
 		if(tag == PrvlgeIndicator){
-			(NoPrvlges*)object->PrvlgeIndicator=field_ele->field_value
+			(NoPrvlges*)object->PrvlgeIndicator=field_ele->field_value;
 		}
 
 		if(tag == QuoteType){
-			(NoPrvlges*)object->QuoteType=field_ele->field_value
+			(NoPrvlges*)object->QuoteType=field_ele->field_value;
 		}
 
 		if(tag == Side){
-			(NoPrvlges*)object->Side=field_ele->field_value
+			(NoPrvlges*)object->Side=field_ele->field_value;
 		}
 
 		if(tag == TradeMethod){
-			(NoPrvlges*)object->TradeMethod=field_ele->field_value
+			(NoPrvlges*)object->TradeMethod=field_ele->field_value;
 		}
 
 		if(tag == NoPartySubIDs){
 			COUNT repeatLength = atol(field_ele->field_value);
 			(NoPartyIDs*)object->NoPartySubIDsCount = repeatLength;
 			BUFFER imixAllChild[MAX_MSG_LEN + 1];
-			returnValue =getChild(imix_str, field_ele, &imixAllChild);
+			returnValue = getChild(imix_str, field_ele, &imixAllChild);
 			if(returnValue == FALSE){
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
 			}
 			for(int j=0;j<repeatLength;++j){
 				BUFFER imixChild[MAX_MSG_LEN + 1];
-				returnValue =getChildByIndex(imixAllChild, field_ele, j, imixChild);
+				returnValue = getChildByIndex(imixAllChild, field_ele, j, imixChild);
 				if(returnValue == FALSE){
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
@@ -350,15 +350,15 @@ BOOL BreakContractRequest_convert_inner(BUFFER* imix_str, LNGTH inputmsglength, 
 		}
 
 		if(tag == PartySubID){
-			(NoPartySubIDs*)object->PartySubID=field_ele->field_value
+			(NoPartySubIDs*)object->PartySubID=field_ele->field_value;
 		}
 
 		if(tag == Description){
-			(NoPartySubIDs*)object->Description=field_ele->field_value
+			(NoPartySubIDs*)object->Description=field_ele->field_value;
 		}
 
 		if(tag == PartySubIDType){
-			(NoPartySubIDs*)object->PartySubIDType=field_ele->field_value
+			(NoPartySubIDs*)object->PartySubIDType=field_ele->field_value;
 		}
 
 	}

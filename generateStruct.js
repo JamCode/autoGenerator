@@ -30,7 +30,7 @@ function generate(structName, imixjson){
     var struct = 'struct ';
     struct += structName+'{\n';
     imixjson.field.forEach(function(e){
-        struct += '\t' + e.type + ' ' + e.name + ';\n';
+        struct += '\t' + e.type + ' ' + e.name + ';/* field number '+e.number+'*/\n';
     });
 
     imixjson.group.forEach(function(e){

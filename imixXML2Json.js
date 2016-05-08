@@ -5,6 +5,10 @@ var imixJsonStr = parser.toJson(xml);
 var imixJson = JSON.parse(imixJsonStr);
 
 
+exports.getIMIXJson = function(){
+    return imixJson;
+}
+
 
 exports.getIMIXFormat = function(msgName){
 
@@ -18,6 +22,14 @@ exports.getIMIXFormat = function(msgName){
             msgJson = imixJson.imix.messages.message[i];
         }
     }
+
+    //console.log(imixJson.imix.header);
+    //console.log(imixJson.imix.trailer);
+
+    msgJson.field = imixJson.imix.header.field.concat(imixJson.imix.trailer.field, msgJson.field);
+
+    console.log(msgJson);
+
 
 
     if(msgJson !== null){
