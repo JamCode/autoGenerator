@@ -1,41 +1,41 @@
 #include <fieldMacroDefine.h>
 struct ADFResponse{
-	STRING BeginString;/* field number 8*/
-	LENGTH BodyLength;/* field number 9*/
-	SEQNUM MsgSeqNum;/* field number 34*/
-	STRING MsgType;/* field number 35*/
-	STRING SenderCompID;/* field number 49*/
-	UTCTIMESTAMP SendingTime;/* field number 52*/
-	STRING TargetCompID;/* field number 56*/
-	STRING DeliverToCompID;/* field number 128*/
-	STRING DeliverToSubID;/* field number 129*/
-	STRING ErrorCode;/* field number 10052*/
-	SEQNUM LastMsgSeqNumProcessed;/* field number 369*/
-	STRING MessageEncoding;/* field number 347*/
-	STRING OnBehalfOfCompID;/* field number 115*/
-	STRING OnBehalfOfSubID;/* field number 116*/
-	UTCTIMESTAMP OrigSendingTime;/* field number 122*/
-	BOOLEAN PossDupFlag;/* field number 43*/
-	BOOLEAN PossResend;/* field number 97*/
-	DATA SecureData;/* field number 91*/
-	LENGTH SecureDataLen;/* field number 90*/
-	INT SegmentID;/* field number 10287*/
-	STRING SenderSubID;/* field number 50*/
-	STRING SignatureMethod;/* field number 10452*/
-	SEQNUM SysSeqNo;/* field number 10308*/
-	STRING TargetSubID;/* field number 57*/
-	SEQNUM UserSeqNo;/* field number 10333*/
-	STRING CheckSum;/* field number 10*/
-	DATA Signature;/* field number 89*/
-	LENGTH SignatureLength;/* field number 93*/
-	STRING ExecID;/* field number 17*/
-	UTCTIMESTAMP TransactTime;/* field number 60*/
+	CHAR BeginString[512];/* field number 8*/
+	INDC BodyLength;/* field number 9*/
+	INDC MsgSeqNum;/* field number 34*/
+	CHAR MsgType[512];/* field number 35*/
+	CHAR SenderCompID[512];/* field number 49*/
+	INT64 SendingTime;/* field number 52*/
+	CHAR TargetCompID[512];/* field number 56*/
+	CHAR DeliverToCompID[512];/* field number 128*/
+	CHAR DeliverToSubID[512];/* field number 129*/
+	CHAR ErrorCode[512];/* field number 10052*/
+	INDC LastMsgSeqNumProcessed;/* field number 369*/
+	CHAR MessageEncoding[512];/* field number 347*/
+	CHAR OnBehalfOfCompID[512];/* field number 115*/
+	CHAR OnBehalfOfSubID[512];/* field number 116*/
+	INT64 OrigSendingTime;/* field number 122*/
+	BOOL PossDupFlag;/* field number 43*/
+	BOOL PossResend;/* field number 97*/
+	CHAR SecureData[512];/* field number 91*/
+	INDC SecureDataLen;/* field number 90*/
+	INT64 SegmentID;/* field number 10287*/
+	CHAR SenderSubID[512];/* field number 50*/
+	CHAR SignatureMethod[512];/* field number 10452*/
+	INDC SysSeqNo;/* field number 10308*/
+	CHAR TargetSubID[512];/* field number 57*/
+	INDC UserSeqNo;/* field number 10333*/
+	CHAR CheckSum[512];/* field number 10*/
+	CHAR Signature[512];/* field number 89*/
+	INDC SignatureLength;/* field number 93*/
+	CHAR ExecID[512];/* field number 17*/
+	INT64 TransactTime;/* field number 60*/
 	INT NoLiquidProviderCount;
 	NoLiquidProvider NoLiquidProviderArray[128];
 };
 struct NoLiquidProvider{
-	CHAR LiquidProviderType;/* field number 10360*/
-	STRING LiquidProvider;/* field number 10359*/
+	CHAR LiquidProviderType[512];/* field number 10360*/
+	CHAR LiquidProvider[512];/* field number 10359*/
 };
 
 INT getLevel(INDC tag){

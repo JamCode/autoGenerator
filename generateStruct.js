@@ -1,5 +1,5 @@
 
-
+var imixConfig = require('./imixConfig.js');
 
 exports.generateStruct = function(structName, imixJson){
     var structStr = generateAll(structName, imixJson);
@@ -27,10 +27,24 @@ function generate(structName, imixjson){
         return '';
     }
 
+    var imixTypeMap = imixConfig.imixTypeMap;
+    imixjson.field.forEach(function(e){
+        for (var variable in imixTypeMap) {
+            if (e.type === variable) {
+                e.type = imixTypeMap[variable];
+            }
+        }
+    });
+
+
     var struct = 'struct ';
     struct += structName+'{\n';
     imixjson.field.forEach(function(e){
-        struct += '\t' + e.type + ' ' + e.name + ';/* field number '+e.number+'*/\n';
+        if (e.type === 'CHAR') {
+            struct += '\t' + e.type + ' ' + e.name + '[512];/* field number '+e.number+'*/\n';
+        }else{
+            struct += '\t' + e.type + ' ' + e.name + ';/* field number '+e.number+'*/\n';
+        }
     });
 
     imixjson.group.forEach(function(e){
