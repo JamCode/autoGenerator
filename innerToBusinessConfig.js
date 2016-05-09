@@ -6,15 +6,14 @@ exports.innerToBusinessConfig = {
 
 
     map:{
-        sysno: '[UserSeqNo == 1:SysSeqNo]',
-    	targetid: 'TargetSubID',
+        sysno: '{UserSeqNo == 1}SysSeqNo',
     	userseq: 'UserSeqNo',
     	checksum: 'CheckSum',
     	signature: 'Signature',
     	signatureLength: 'SignatureLength',
-    	execid: 'ExecID'
+    	execid: 'ExecID',
     }
 
-    
+
 
 }

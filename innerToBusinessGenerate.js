@@ -21,6 +21,29 @@ function includeGenerate(){
 
 }
 
+
+function printEqual(mapConfigLeft, mapConfigRight){
+    if (mapConfigRight.indexOf('{')!== -1&&mapConfigRight.indexOf('}')!== -1) {
+
+        var conditionBegin = mapConfigRight.indexOf('{');
+        var conditionEnd = mapConfigRight.indexOf('}');
+
+
+        condition = mapConfigRight.substr(conditionBegin+1, conditionEnd - conditionBegin - 1);
+        var equalStr = mapConfigRight.substr(conditionEnd+1);
+
+        console.log(condition);
+        console.log(equalStr);
+
+        fs.appendFileSync(fileName, '\tif('+condition+'){\n');
+        fs.appendFileSync(fileName, '\t\tbusinessStruct->'+mapConfigLeft+' = innerStruct->'+equalStr+';\n');
+        fs.appendFileSync(fileName, '\t}\n');
+    }else{
+        //simple equal
+        fs.appendFileSync(fileName, '\tbusinessStruct->'+mapConfigLeft+' = innerStruct->'+mapConfigRight+';\n');
+    }
+}
+
 function mainFuncDefine(){
     var funcName = config.innerToBusinessConfig.funcName;
     var innerStruct = config.innerToBusinessConfig.innerStruct;
@@ -32,26 +55,7 @@ function mainFuncDefine(){
 
     var map = config.innerToBusinessConfig.map;
     for (var variable in map) {
-        if (map[variable].indexOf('[') === 0&&map[variable].indexOf(']') === map[variable].length - 1) {
-            console.log('condition');
-            var mapArray = map[variable].split(':');
-            var condition = mapArray[0].substr(1);
-            var equalStr = mapArray[1].substr(0, mapArray[1].length - 1);
-
-            console.log(condition);
-            console.log(equalStr);
-
-            fs.appendFileSync(fileName, '\tif('+condition+'){\n');
-            fs.appendFileSync(fileName, '\t\tbusinessStruct->'+variable+' = innerStruct->'+equalStr+';\n');
-            fs.appendFileSync(fileName, '\t}\n');
-
-
-
-
-        }else{
-            //simple equal
-            fs.appendFileSync(fileName, '\tbusinessStruct->'+variable+' = innerStruct->'+map[variable]+';\n');
-        }
+        printEqual(variable, map[variable]);
     }
 
     fs.appendFileSync(fileName, '\treturn TRUE;\n');
