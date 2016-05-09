@@ -1,3 +1,4 @@
+/*5/9/2016, 4:41:34 PM*/
 #include <fieldMacroDefine.h>
 struct ADFResponse{
 	CHAR BeginString[512];/* field number 8*/
@@ -85,123 +86,123 @@ BOOL ADFResponse_convert_inner(FIELD_DETAILS *all_field_array, COUNT all_field_a
 		FIELD_DETAILS *field_ele = &field_array[i];
 		INDC tag = atoi(field_ele->field_name);
 		if(tag == BeginString){
-			(ADFResponse*)object->BeginString=field_ele->field_value;
+			strncpy((ADFResponse*)object->BeginString, field_ele->field_value, 511);
 		}
 
 		if(tag == BodyLength){
-			(ADFResponse*)object->BodyLength=field_ele->field_value;
+			(ADFResponse*)object->BodyLength=atol(field_ele->field_value);
 		}
 
 		if(tag == MsgSeqNum){
-			(ADFResponse*)object->MsgSeqNum=field_ele->field_value;
+			(ADFResponse*)object->MsgSeqNum=atol(field_ele->field_value);
 		}
 
 		if(tag == MsgType){
-			(ADFResponse*)object->MsgType=field_ele->field_value;
+			strncpy((ADFResponse*)object->MsgType, field_ele->field_value, 511);
 		}
 
 		if(tag == SenderCompID){
-			(ADFResponse*)object->SenderCompID=field_ele->field_value;
+			strncpy((ADFResponse*)object->SenderCompID, field_ele->field_value, 511);
 		}
 
 		if(tag == SendingTime){
-			(ADFResponse*)object->SendingTime=field_ele->field_value;
+			(ADFResponse*)object->SendingTime=atol(field_ele->field_value);
 		}
 
 		if(tag == TargetCompID){
-			(ADFResponse*)object->TargetCompID=field_ele->field_value;
+			strncpy((ADFResponse*)object->TargetCompID, field_ele->field_value, 511);
 		}
 
 		if(tag == DeliverToCompID){
-			(ADFResponse*)object->DeliverToCompID=field_ele->field_value;
+			strncpy((ADFResponse*)object->DeliverToCompID, field_ele->field_value, 511);
 		}
 
 		if(tag == DeliverToSubID){
-			(ADFResponse*)object->DeliverToSubID=field_ele->field_value;
+			strncpy((ADFResponse*)object->DeliverToSubID, field_ele->field_value, 511);
 		}
 
 		if(tag == ErrorCode){
-			(ADFResponse*)object->ErrorCode=field_ele->field_value;
+			strncpy((ADFResponse*)object->ErrorCode, field_ele->field_value, 511);
 		}
 
 		if(tag == LastMsgSeqNumProcessed){
-			(ADFResponse*)object->LastMsgSeqNumProcessed=field_ele->field_value;
+			(ADFResponse*)object->LastMsgSeqNumProcessed=atol(field_ele->field_value);
 		}
 
 		if(tag == MessageEncoding){
-			(ADFResponse*)object->MessageEncoding=field_ele->field_value;
+			strncpy((ADFResponse*)object->MessageEncoding, field_ele->field_value, 511);
 		}
 
 		if(tag == OnBehalfOfCompID){
-			(ADFResponse*)object->OnBehalfOfCompID=field_ele->field_value;
+			strncpy((ADFResponse*)object->OnBehalfOfCompID, field_ele->field_value, 511);
 		}
 
 		if(tag == OnBehalfOfSubID){
-			(ADFResponse*)object->OnBehalfOfSubID=field_ele->field_value;
+			strncpy((ADFResponse*)object->OnBehalfOfSubID, field_ele->field_value, 511);
 		}
 
 		if(tag == OrigSendingTime){
-			(ADFResponse*)object->OrigSendingTime=field_ele->field_value;
+			(ADFResponse*)object->OrigSendingTime=atol(field_ele->field_value);
 		}
 
 		if(tag == PossDupFlag){
-			(ADFResponse*)object->PossDupFlag=field_ele->field_value;
+			(ADFResponse*)object->PossDupFlag=atol(field_ele->field_value);
 		}
 
 		if(tag == PossResend){
-			(ADFResponse*)object->PossResend=field_ele->field_value;
+			(ADFResponse*)object->PossResend=atol(field_ele->field_value);
 		}
 
 		if(tag == SecureData){
-			(ADFResponse*)object->SecureData=field_ele->field_value;
+			strncpy((ADFResponse*)object->SecureData, field_ele->field_value, 511);
 		}
 
 		if(tag == SecureDataLen){
-			(ADFResponse*)object->SecureDataLen=field_ele->field_value;
+			(ADFResponse*)object->SecureDataLen=atol(field_ele->field_value);
 		}
 
 		if(tag == SegmentID){
-			(ADFResponse*)object->SegmentID=field_ele->field_value;
+			(ADFResponse*)object->SegmentID=atol(field_ele->field_value);
 		}
 
 		if(tag == SenderSubID){
-			(ADFResponse*)object->SenderSubID=field_ele->field_value;
+			strncpy((ADFResponse*)object->SenderSubID, field_ele->field_value, 511);
 		}
 
 		if(tag == SignatureMethod){
-			(ADFResponse*)object->SignatureMethod=field_ele->field_value;
+			strncpy((ADFResponse*)object->SignatureMethod, field_ele->field_value, 511);
 		}
 
 		if(tag == SysSeqNo){
-			(ADFResponse*)object->SysSeqNo=field_ele->field_value;
+			(ADFResponse*)object->SysSeqNo=atol(field_ele->field_value);
 		}
 
 		if(tag == TargetSubID){
-			(ADFResponse*)object->TargetSubID=field_ele->field_value;
+			strncpy((ADFResponse*)object->TargetSubID, field_ele->field_value, 511);
 		}
 
 		if(tag == UserSeqNo){
-			(ADFResponse*)object->UserSeqNo=field_ele->field_value;
+			(ADFResponse*)object->UserSeqNo=atol(field_ele->field_value);
 		}
 
 		if(tag == CheckSum){
-			(ADFResponse*)object->CheckSum=field_ele->field_value;
+			strncpy((ADFResponse*)object->CheckSum, field_ele->field_value, 511);
 		}
 
 		if(tag == Signature){
-			(ADFResponse*)object->Signature=field_ele->field_value;
+			strncpy((ADFResponse*)object->Signature, field_ele->field_value, 511);
 		}
 
 		if(tag == SignatureLength){
-			(ADFResponse*)object->SignatureLength=field_ele->field_value;
+			(ADFResponse*)object->SignatureLength=atol(field_ele->field_value);
 		}
 
 		if(tag == ExecID){
-			(ADFResponse*)object->ExecID=field_ele->field_value;
+			strncpy((ADFResponse*)object->ExecID, field_ele->field_value, 511);
 		}
 
 		if(tag == TransactTime){
-			(ADFResponse*)object->TransactTime=field_ele->field_value;
+			(ADFResponse*)object->TransactTime=atol(field_ele->field_value);
 		}
 
 		if(tag == NoLiquidProvider){
@@ -231,11 +232,11 @@ BOOL ADFResponse_convert_inner(FIELD_DETAILS *all_field_array, COUNT all_field_a
 		}
 
 		if(tag == LiquidProviderType){
-			(NoLiquidProvider*)object->LiquidProviderType=field_ele->field_value;
+			strncpy((NoLiquidProvider*)object->LiquidProviderType, field_ele->field_value, 511);
 		}
 
 		if(tag == LiquidProvider){
-			(NoLiquidProvider*)object->LiquidProvider=field_ele->field_value;
+			strncpy((NoLiquidProvider*)object->LiquidProvider, field_ele->field_value, 511);
 		}
 
 	}

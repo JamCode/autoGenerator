@@ -2,7 +2,6 @@ BOOL ADFResponseToADFResponseBusiness(ADFResponse *innerStruct,  ADFResponseBusi
 	if(UserSeqNo == 1){
 		businessStruct->sysno = innerStruct->SysSeqNo;
 	}
-	businessStruct->targetid[].ff = innerStruct->TargetSubID[repeatLength].ddd;
 	businessStruct->userseq = innerStruct->UserSeqNo;
 	businessStruct->checksum = innerStruct->CheckSum;
 	businessStruct->signature = innerStruct->Signature;

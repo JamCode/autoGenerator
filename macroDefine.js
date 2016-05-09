@@ -1,15 +1,17 @@
 //域号对应的宏定义
 
 var fs = require('fs');
-var imixConvert = require('./imixXML2json.js');
-var fileName = 'fieldMacroDefine.h';
+var path = require('path');
+var imixConvert = require('./utility/imixXML2json.js');
 
-
-var imixJson = imixConvert.getIMIXJson();
-
+var fileName = path.join(__dirname, 'c', 'fieldMacroDefine.h');
+var xmlFileName = 'imix.xml';
+var imixJson = imixConvert.getIMIXJson(xmlFileName);
 console.log(imixJson.imix.fields.field instanceof Array);
 
 fs.openSync(fileName, 'w');
+
+fs.appendFileSync(fileName, '/* '+ (new Date).toLocaleString() +' */\n');
 fs.appendFileSync(fileName, '/* all imix field marco define */\n');
 
 imixJson.imix.fields.field.forEach(function(e){

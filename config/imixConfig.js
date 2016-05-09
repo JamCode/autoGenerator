@@ -5,7 +5,8 @@ exports.imixTypeMap =  {
     UTCTIMESTAMP: 'INT64',
     BOOLEAN: 'BOOL',
     DATA: 'CHAR',
-    INT: 'INT64'
+    INT: 'INT64',
+    NUMBER: 'INT64'
 }
 
 

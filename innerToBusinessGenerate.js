@@ -1,5 +1,13 @@
-var config = require('./innerToBusinessConfig.js');
-var fileName = config.innerToBusinessConfig.fileName;
+
+if (process.argv.length !== 3) {
+    console.log('ERROR! need config name: node innerToBusinessGenerate.js innerToBusinessConfig.js');
+    return;
+}
+
+
+var config = require('./config/'+process.argv[2]);
+var path = require('path');
+var fileName = path.join(__dirname, 'c', config.innerToBusinessConfig.fileName);
 var fs = require('fs');
 
 

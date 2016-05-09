@@ -1,5 +1,5 @@
 
-var imixConfig = require('./imixConfig.js');
+var imixConfig = require('../config/imixConfig.js');
 
 exports.generateStruct = function(structName, imixJson){
     var structStr = generateAll(structName, imixJson);

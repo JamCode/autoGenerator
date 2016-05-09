@@ -1,13 +1,23 @@
+
+if (process.argv.length !== 3) {
+    console.log('ERROR! need msg name: node imixToInnerGenerate.js ADFResponse');
+    return;
+}
+
+
 var fs = require('fs');
-var imixConvert = require('./imixXML2json.js');
-var msgName = 'ADFResponse';
-var imixJson = imixConvert.getIMIXFormat(msgName);
-var fileName = msgName+'_convert.c';
+var path = require('path');
+var imixConvert = require('./utility/imixXML2json.js');
+var msgName = process.argv[2];
+var imixJson = imixConvert.getIMIXFormat(msgName, 'imix.xml');
+
+var fileName = path.join(__dirname, 'c', msgName+'_convert.c');
 var funcName = msgName+'_convert_inner';
-var generateStruct = require('./generateStruct.js');
+var generateStruct = require('./utility/generateStruct.js');
 
 
 fs.openSync(fileName, 'w');
+fs.appendFileSync(fileName, '/*'+(new Date).toLocaleString() + '*/\n');
 
 //include
 fs.appendFileSync(fileName, '#include <fieldMacroDefine.h>\n');
@@ -108,7 +118,19 @@ function parse(imixContent, fs, fileName){
     if(imixContent.field !== undefined){
         imixContent.field.forEach(function(e){
             fs.appendFileSync(fileName, '\t\tif(tag == '+e.name+'){\n');
-            fs.appendFileSync(fileName, '\t\t\t('+imixContent.name+'*)object->'+e.name+'=field_ele->field_value;\n');
+            //console.log(e.type);
+            if (e.type === 'CHAR') {
+                fs.appendFileSync(fileName, '\t\t\tstrncpy(('+imixContent.name+'*)object->'+e.name+', field_ele->field_value, 511);\n');
+            }
+
+            if (e.type === 'INDC'||e.type === 'INT64') {
+                fs.appendFileSync(fileName, '\t\t\t('+imixContent.name+'*)object->'+e.name+'=atol(field_ele->field_value);\n');
+            }
+
+            if (e.type === 'BOOL') {
+                fs.appendFileSync(fileName, '\t\t\t('+imixContent.name+'*)object->'+e.name+'=atol(field_ele->field_value);\n');
+            }
+
             fs.appendFileSync(fileName, '\t\t}\n\n');
         });
     }

@@ -1,17 +1,17 @@
 var parser = require('xml2json');
 var fs = require('fs');
-var xml = fs.readFileSync('imix.xml');
-var imixJsonStr = parser.toJson(xml);
-var imixJson = JSON.parse(imixJsonStr);
 
-
-exports.getIMIXJson = function(){
+exports.getIMIXJson = function(xmlName){
+    var xml = fs.readFileSync(xmlName);
+    var imixJsonStr = parser.toJson(xml);
+    var imixJson = JSON.parse(imixJsonStr);
     return imixJson;
 }
 
-
-exports.getIMIXFormat = function(msgName){
-
+exports.getIMIXFormat = function(msgName, xmlName){
+    var xml = fs.readFileSync(xmlName);
+    var imixJsonStr = parser.toJson(xml);
+    imixJson = JSON.parse(imixJsonStr);
 
     var msgJson = null;
 
