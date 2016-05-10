@@ -52,7 +52,7 @@ function defineMainFunc(){
         '\tCOUNT filed_array_length = 0;\n');
     //
     fs.appendFileSync(fileName,
-        '\tBOOL returnValue = getNodes(all_field_array, all_field_array_length, &field_array, &filed_array_length, getLevel);\n');
+        '\tBOOL returnValue = getNodes(all_field_array, all_field_array_length, &field_array, &filed_array_length, getLevel_'+msgName+');\n');
 
     fs.appendFileSync(fileName, '\tif(returnValue == FALSE){\n');
     fs.appendFileSync(fileName, '\t\t'+printLogStr('getNodes failed', 0, 'TRC_DBG', 'ERR_TRC'));
@@ -86,7 +86,7 @@ function defineInnerStruct(msgName){
 
 function defineGetlevel(imixJson){
     fs.appendFileSync(fileName,
-        '\nINT getLevel(INDC tag){\n');
+        '\nINT getLevel_'+msgName+'(INDC tag){\n');
 
     parseLevel(imixJson, 0);
 
@@ -146,7 +146,7 @@ function parse(imixContent, fs, fileName){
             //重复组内部处理
             fs.appendFileSync(fileName, '\t\t\tFIELD_DETAILS all_child_field_array[256];\n');
             fs.appendFileSync(fileName, '\t\t\tCOUNT all_child_field_array_length;\n');
-            fs.appendFileSync(fileName, '\t\t\treturnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel);\n');
+            fs.appendFileSync(fileName, '\t\t\treturnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_' + msgName + ');\n');
 
             fs.appendFileSync(fileName, '\t\t\tif(returnValue == FALSE){\n');
             fs.appendFileSync(fileName, '\t\t\t\t'+printLogStr('getChild failed', 0, 'TRC_DBG', 'ERR_TRC'));
@@ -158,7 +158,7 @@ function parse(imixContent, fs, fileName){
             fs.appendFileSync(fileName, '\t\t\t\tFIELD_DETAILS child_field_array[256];\n');
             fs.appendFileSync(fileName, '\t\t\t\tCOUNT child_field_array_length;\n');
 
-            fs.appendFileSync(fileName, '\t\t\t\treturnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel);\n');
+            fs.appendFileSync(fileName, '\t\t\t\treturnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel_' + msgName + ');\n');
             fs.appendFileSync(fileName, '\t\t\t\tif(returnValue == FALSE){\n');
             fs.appendFileSync(fileName, '\t\t\t\t\t'+printLogStr('getChildByIndex failed', 0, 'TRC_DBG', 'ERR_TRC'));
             fs.appendFileSync(fileName, '\t\t\t\t\treturn returnValue;\n');

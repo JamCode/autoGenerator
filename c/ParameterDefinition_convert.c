@@ -1,4 +1,4 @@
-/*5/10/2016, 3:27:30 PM*/
+/*5/10/2016, 3:33:25 PM*/
 #include <fieldMacroDefine.h>
 struct ParameterDefinition{
 	CHAR BeginString[512];/* field number 8*/
@@ -78,7 +78,7 @@ struct NoPartySubIDs{
 	INT64 PartySubIDType;/* field number 803*/
 };
 
-INT getLevel(INDC tag){
+INT getLevel_ParameterDefinition(INDC tag){
 	if(BeginString == tag){return 0;}
 	if(BodyLength == tag){return 0;}
 	if(undefined == tag){return 0;}
@@ -143,7 +143,7 @@ INT getLevel(INDC tag){
 BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all_field_array_length, char* object){
 	FIELD_DETAILS field_array[256];
 	COUNT filed_array_length = 0;
-	BOOL returnValue = getNodes(all_field_array, all_field_array_length, &field_array, &filed_array_length, getLevel);
+	BOOL returnValue = getNodes(all_field_array, all_field_array_length, &field_array, &filed_array_length, getLevel_ParameterDefinition);
 	if(returnValue == FALSE){
 		ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getNodes failed");
 		return returnValue;
@@ -288,7 +288,7 @@ BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all
 			(ParameterDefinition*)object->NoParameterDefinitionsCount = repeatLength;
 			FIELD_DETAILS all_child_field_array[256];
 			COUNT all_child_field_array_length;
-			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel);
+			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_ParameterDefinition);
 			if(returnValue == FALSE){
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
@@ -296,7 +296,7 @@ BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all
 			for(int j=0;j<repeatLength;++j){
 				FIELD_DETAILS child_field_array[256];
 				COUNT child_field_array_length;
-				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel);
+				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel_ParameterDefinition);
 				if(returnValue == FALSE){
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
@@ -342,7 +342,7 @@ BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all
 			(NoParameterDefinitions*)object->NoContactInfosCount = repeatLength;
 			FIELD_DETAILS all_child_field_array[256];
 			COUNT all_child_field_array_length;
-			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel);
+			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_ParameterDefinition);
 			if(returnValue == FALSE){
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
@@ -350,7 +350,7 @@ BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all
 			for(int j=0;j<repeatLength;++j){
 				FIELD_DETAILS child_field_array[256];
 				COUNT child_field_array_length;
-				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel);
+				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel_ParameterDefinition);
 				if(returnValue == FALSE){
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
@@ -376,7 +376,7 @@ BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all
 			(NoParameterDefinitions*)object->NoParameterDefinitionSubIDCount = repeatLength;
 			FIELD_DETAILS all_child_field_array[256];
 			COUNT all_child_field_array_length;
-			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel);
+			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_ParameterDefinition);
 			if(returnValue == FALSE){
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
@@ -384,7 +384,7 @@ BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all
 			for(int j=0;j<repeatLength;++j){
 				FIELD_DETAILS child_field_array[256];
 				COUNT child_field_array_length;
-				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel);
+				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel_ParameterDefinition);
 				if(returnValue == FALSE){
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
@@ -410,7 +410,7 @@ BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all
 			(ParameterDefinition*)object->NoPartyIDsCount = repeatLength;
 			FIELD_DETAILS all_child_field_array[256];
 			COUNT all_child_field_array_length;
-			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel);
+			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_ParameterDefinition);
 			if(returnValue == FALSE){
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
@@ -418,7 +418,7 @@ BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all
 			for(int j=0;j<repeatLength;++j){
 				FIELD_DETAILS child_field_array[256];
 				COUNT child_field_array_length;
-				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel);
+				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel_ParameterDefinition);
 				if(returnValue == FALSE){
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
@@ -448,7 +448,7 @@ BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all
 			(NoPartyIDs*)object->NoPartySubIDsCount = repeatLength;
 			FIELD_DETAILS all_child_field_array[256];
 			COUNT all_child_field_array_length;
-			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel);
+			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_ParameterDefinition);
 			if(returnValue == FALSE){
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
@@ -456,7 +456,7 @@ BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all
 			for(int j=0;j<repeatLength;++j){
 				FIELD_DETAILS child_field_array[256];
 				COUNT child_field_array_length;
-				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel);
+				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel_ParameterDefinition);
 				if(returnValue == FALSE){
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
