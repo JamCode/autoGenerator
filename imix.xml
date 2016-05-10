@@ -27,7 +27,7 @@
       <field name="TargetSubID" required="N" />
       <field name="UserSeqNo" required="N" />
       <component name="HopsGroup" required="N" />
-  </header>
+</header>
 
   <trailer>
       <field name="CheckSum" required="Y" />

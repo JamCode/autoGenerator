@@ -44,7 +44,7 @@ function generate(structName, imixjson){
         if (e === undefined) {
             return;
         }
-        
+
         if (e.type === 'CHAR') {
             struct += '\t' + e.type + ' ' + e.name + '[512];/* field number '+e.number+'*/\n';
         }else{
@@ -53,7 +53,7 @@ function generate(structName, imixjson){
     });
 
     imixjson.group.forEach(function(e){
-        struct += '\tINT ' + e.name + 'Count;\n';
+        struct += '\tINT ' + e.name + 'Count;/* field number '+e.number+' */ \n';
         struct += '\t' + e.name + ' ' + e.name + 'Array[128];\n';
     });
 

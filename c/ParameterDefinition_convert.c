@@ -1,13 +1,34 @@
-/*5/10/2016, 2:03:07 PM*/
+/*5/10/2016, 3:27:30 PM*/
 #include <fieldMacroDefine.h>
 struct ParameterDefinition{
 	CHAR BeginString[512];/* field number 8*/
 	INDC BodyLength;/* field number 9*/
 	undefined undefined;/* field number undefined*/
 	CHAR MsgType[512];/* field number 35*/
-
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
 	CHAR CheckSum[512];/* field number 10*/
-
+	undefined undefined;/* field number undefined*/
+	undefined undefined;/* field number undefined*/
 	CHAR ParameterDefinitionAction[512];/* field number 11160*/
 	CHAR ParameterDefinitionType[512];/* field number 11159*/
 	CHAR ApplID[512];/* field number 1180*/
@@ -19,9 +40,9 @@ struct ParameterDefinition{
 	CHAR ApplErrorCode[512];/* field number 11251*/
 	CHAR ApplErrorDesc[512];/* field number 11261*/
 	CHAR ApplUniqueKey[512];/* field number 11252*/
-	INT NoParameterDefinitionsCount;
+	INT NoParameterDefinitionsCount;/* field number 11158 */
 	NoParameterDefinitions NoParameterDefinitionsArray[128];
-	INT NoPartyIDsCount;
+	INT NoPartyIDsCount;/* field number 453 */
 	NoPartyIDs NoPartyIDsArray[128];
 };
 struct NoParameterDefinitions{
@@ -32,9 +53,9 @@ struct NoParameterDefinitions{
 	CHAR ParameterType[512];/* field number 11156*/
 	CHAR RelationshipID[512];/* field number 11364*/
 	CHAR UpdateAction[512];/* field number 11365*/
-	INT NoContactInfosCount;
+	INT NoContactInfosCount;/* field number 10601 */
 	NoContactInfos NoContactInfosArray[128];
-	INT NoParameterDefinitionSubIDCount;
+	INT NoParameterDefinitionSubIDCount;/* field number 11368 */
 	NoParameterDefinitionSubID NoParameterDefinitionSubIDArray[128];
 };
 struct NoContactInfos{
@@ -49,7 +70,7 @@ struct NoPartyIDs{
 	CHAR PartyID[512];/* field number 448*/
 	INT64 PartyRole;/* field number 452*/
 	INT64 PartyRoleQualifier;/* field number 2376*/
-	INT NoPartySubIDsCount;
+	INT NoPartySubIDsCount;/* field number 802 */
 	NoPartySubIDs NoPartySubIDsArray[128];
 };
 struct NoPartySubIDs{
