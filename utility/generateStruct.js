@@ -40,6 +40,11 @@ function generate(structName, imixjson){
     var struct = 'struct ';
     struct += structName+'{\n';
     imixjson.field.forEach(function(e){
+
+        if (e === undefined) {
+            return;
+        }
+        
         if (e.type === 'CHAR') {
             struct += '\t' + e.type + ' ' + e.name + '[512];/* field number '+e.number+'*/\n';
         }else{
