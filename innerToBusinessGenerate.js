@@ -30,7 +30,7 @@ function includeGenerate(){
 }
 
 
-function printEqual(mapConfigLeft, mapConfigRight){
+function printEqual(tab, mapConfigLeft, mapConfigRight, leftStruct, rightStruct, repeat, leftRepeat){
     if (mapConfigRight.indexOf('{')!== -1&&mapConfigRight.indexOf('}')!== -1) {
 
         var conditionBegin = mapConfigRight.indexOf('{');
@@ -43,17 +43,45 @@ function printEqual(mapConfigLeft, mapConfigRight){
         console.log(condition);
         console.log(equalStr);
 
-        fs.appendFileSync(fileName, '\tif('+condition+'){\n');
-        fs.appendFileSync(fileName, '\t\tbusinessStruct->'+mapConfigLeft+' = innerStruct->'+equalStr+';\n');
-        fs.appendFileSync(fileName, '\t}\n');
+        fs.appendFileSync(fileName, tab+'\tif('+condition+'){\n');
+        equalPrint(tab, mapConfigLeft, equalStr, leftStruct, rightStruct, repeat, leftRepeat);
+        fs.appendFileSync(fileName, tab+'\t}\n');
     }else{
         //simple equal
-        fs.appendFileSync(fileName, '\tbusinessStruct->'+mapConfigLeft+' = innerStruct->'+mapConfigRight+';\n');
+        equalPrint(tab, mapConfigLeft, mapConfigRight, leftStruct, rightStruct, repeat, leftRepeat);
     }
 }
 
+function equalPrint(tab, leftConfig, rightConfig, leftStruct, rightStruct, repeat, leftRepeat){
+
+    if (rightConfig.indexOf('[')!==-1&&rightConfig.indexOf(']')!==-1) {
+        rightConfig = rightConfig.substr(0, rightConfig.indexOf('['));
+        if(repeat){
+            if (leftRepeat) {
+                fs.appendFileSync(fileName, tab+'\t\tstrcpy('+leftStruct+'[i].'+leftConfig+' , '+rightStruct+'[i].'+rightConfig+');\n');
+            }else{
+                fs.appendFileSync(fileName, tab+'\t\tstrcpy('+leftStruct+'.'+leftConfig+' , '+rightStruct+'[i].'+rightConfig+');\n');
+            }
+        }else{
+            fs.appendFileSync(fileName, tab+'\t\tstrcpy('+leftStruct+'.'+leftConfig+' , '+rightStruct+'.'+rightConfig+');\n');
+        }
+    }else{
+        if (repeat) {
+            if (leftRepeat) {
+                fs.appendFileSync(fileName, tab+'\t'+leftStruct+'[i].'+leftConfig+' = '+rightStruct+'[i].'+rightConfig+';\n');
+            }else{
+                fs.appendFileSync(fileName, tab+'\t'+leftStruct+'.'+leftConfig+' = '+rightStruct+'[i].'+rightConfig+';\n');
+            }
+        }else{
+            fs.appendFileSync(fileName, tab+'\t'+leftStruct+'.'+leftConfig+' = '+rightStruct+'.'+rightConfig+';\n');
+        }
+    }
+}
+
+
 function mainFuncDefine(){
     var funcName = config.innerToBusinessConfig.funcName;
+    var specialFunc = config.innerToBusinessConfig.special;
     var innerStruct = config.innerToBusinessConfig.innerStruct;
     var businessStruct = config.innerToBusinessConfig.BusinessStruct;
 
@@ -61,11 +89,56 @@ function mainFuncDefine(){
     fs.appendFileSync(fileName,
         'BOOL '+funcName+'('+innerStruct+' *innerStruct,  '+businessStruct+' *businessStruct){\n');
 
-    var map = config.innerToBusinessConfig.map;
-    for (var variable in map) {
-        printEqual(variable, map[variable]);
+    fs.appendFileSync(fileName, '\tRETURN_VALUE returnValue = TRUE;\n');
+
+
+
+    var repeatMapArray = config.innerToBusinessConfig.repeatMap;
+    repeatMapArray.forEach(function(repeatMap){
+        repeatParse('', repeatMap);
+    });
+
+
+    //specialFunc call
+    console.log(specialFunc);
+    if(specialFunc!== undefined){
+        fs.appendFileSync(fileName, '\treturnValue = '+specialFunc+'(innerStruct, businessStruct);\n');
+        fs.appendFileSync(fileName, '\tif(returnValue == false){\n');
+        fs.appendFileSync(fileName, '\t\t'+printLogStr('specialFunc failed', 0, 'TRC_DBG', 'ERR_TRC'));
+        fs.appendFileSync(fileName, '\t}\n');
     }
 
-    fs.appendFileSync(fileName, '\treturn TRUE;\n');
+    fs.appendFileSync(fileName, '\treturn returnValue;\n');
     fs.appendFileSync(fileName, '}\n');
+}
+
+function parseMap(tab, leftStruct, rightStruct, map, repeat, leftRepeat){
+    for (var variable in map) {
+        printEqual(tab, variable, map[variable], leftStruct, rightStruct, repeat, leftRepeat);
+    }
+}
+
+
+function repeatParse(tab, repeatMap){
+    var leftStruct = repeatMap.leftStruct;
+    var rightStruct = repeatMap.rightStruct;
+    var length = repeatMap.length;
+    var repeat = repeatMap.repeat;
+    var leftRepeat = repeatMap.leftRepeat;
+    var map = repeatMap.map;
+
+    if (repeat === false) {
+        parseMap(tab, leftStruct, rightStruct, map, repeat, leftRepeat);
+    }else{
+        fs.appendFileSync(fileName, tab+'\t/*'+length+' group repeat */\n');
+        fs.appendFileSync(fileName, tab+'\tfor(int i=0; i<'+length+';++i){\n');
+        parseMap('\t'+tab, leftStruct, rightStruct, map, repeat, leftRepeat);
+        fs.appendFileSync(fileName, tab+'\t}\n');
+    }
+    fs.appendFileSync(fileName, '\n');
+}
+
+function printLogStr(str, error_code, trc_level, err_level){
+    var str = 'ProcessEventLog(__FILE__, __LINE__, '+trc_level+', '+err_level+', Info('+error_code+'), \"'+str+'\");\n';
+    return str;
 }
