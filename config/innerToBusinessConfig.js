@@ -1,6 +1,6 @@
 exports.innerToBusinessConfig = {
-    innerStruct: 'ADFResponse',
-    BusinessStruct: 'ADFResponseBusiness',
+    innerStruct: 'ADFResponse', //技术结构体定义名
+    BusinessStruct: 'ADFResponseBusiness', //业务结构体定义名
     fileName: 'ADFResponseToADFResponseBusiness.c',
     funcName: 'ADFResponseToADFResponseBusiness',
 
@@ -8,11 +8,11 @@ exports.innerToBusinessConfig = {
         {
             leftStruct:'businessStruct->CCC',
             rightStruct: 'innerStruct->DDD',
-            length: 'innerStruct->DDDlength',
+            length: 'innerStruct->DDDlength', //重复组长度
             repeat: true, //是否重复组
             leftRepeat: true, //业务结构体是否重复组
             map:{
-                sysno: '{UserSeqNo == 1}SysSeqNo[CHAR]',
+                sysno: '{UserSeqNo == 1}SysSeqNo[CHAR]', //业务结构体字段名:{条件}技术结构体字段名[类型]
                 userseq: 'UserSeqNo',
                 checksum: 'CheckSum',
                 signature: 'Signature',
@@ -50,5 +50,5 @@ exports.innerToBusinessConfig = {
         },
     ],
 
-    special: 'ADFResponseToADFResponseBusiness_special'
+    special: 'ADFResponseToADFResponseBusiness_special' //自定义函数名
 }

@@ -21,6 +21,12 @@ node imixToInnerGenerate.js msgName
 
 ### 技术结构体转换为业务结构体
 
+```
+
+node innerToBusinessGenerate.js <config file name>
+
+```
+
 ### 公共引用部分
 
 ```

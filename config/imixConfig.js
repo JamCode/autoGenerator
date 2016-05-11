@@ -1,3 +1,6 @@
+
+//IMIX消息类型到本币类型转换
+
 exports.imixTypeMap =  {
     STRING: 'CHAR',
     LENGTH: 'INDC',
