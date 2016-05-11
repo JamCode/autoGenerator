@@ -17,3 +17,5 @@ fs.appendFileSync(fileName, '/* all imix field marco define */\n');
 imixJson.imix.fields.field.forEach(function(e){
     fs.appendFileSync(fileName, '#define '+e.name+ ' '+e.number+'\n');
 });
+
+console.log('generate code finish!');

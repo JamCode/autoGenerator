@@ -16,14 +16,11 @@ fs.openSync(fileName, 'w');
 includeGenerate();
 mainFuncDefine();
 
+console.log('generate code finish!');
 
 
 
-
-
-console.log(config);
-
-
+////////////////////////////////////////////////////////////////////////////////
 
 function includeGenerate(){
 

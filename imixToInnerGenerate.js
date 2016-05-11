@@ -35,7 +35,7 @@ defineGetlevel(imixJson);
 defineMainFunc();
 
 
-
+console.log('generate code finish!');
 
 
 
