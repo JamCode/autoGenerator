@@ -42,8 +42,11 @@ function printEqual(tab, mapConfigLeft, mapConfigRight, leftStruct, rightStruct,
 
         console.log(condition);
         console.log(equalStr);
-
-        fs.appendFileSync(fileName, tab+'\tif('+condition+'){\n');
+        if(repeat){
+            fs.appendFileSync(fileName, tab+'\tif('+rightStruct+'[i].'+condition+'){\n');
+        }else{
+            fs.appendFileSync(fileName, tab+'\tif('+rightStruct+'.'+condition+'){\n');
+        }
         equalPrint(tab, mapConfigLeft, equalStr, leftStruct, rightStruct, repeat, leftRepeat);
         fs.appendFileSync(fileName, tab+'\t}\n');
     }else{

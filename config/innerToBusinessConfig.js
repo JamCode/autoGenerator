@@ -6,7 +6,7 @@ exports.innerToBusinessConfig = {
 
     repeatMap:[
         {
-            leftStruct:'BusinessStruct->CCC',
+            leftStruct:'businessStruct->CCC',
             rightStruct: 'innerStruct->DDD',
             length: 'innerStruct->DDDlength',
             repeat: true, //是否重复组
@@ -21,7 +21,7 @@ exports.innerToBusinessConfig = {
             }
         },
         {
-            leftStruct:'BusinessStruct->AAA',
+            leftStruct:'businessStruct->AAA',
             rightStruct: 'innerStruct->BBB',
             length: 'innerStruct->BBBlength',
             repeat: true, //是否重复组
@@ -36,7 +36,7 @@ exports.innerToBusinessConfig = {
             }
         },
         {
-            leftStruct:'*BusinessStruct',
+            leftStruct:'*businessStruct',
             rightStruct: '*innerStruct',
             repeat: false, //是否重复组
             map:{

@@ -2,36 +2,36 @@ BOOL ADFResponseToADFResponseBusiness(ADFResponse *innerStruct,  ADFResponseBusi
 	RETURN_VALUE returnValue = TRUE;
 	/*innerStruct->DDDlength group repeat */
 	for(int i=0; i<innerStruct->DDDlength;++i){
-		if(UserSeqNo == 1){
-			strcpy(BusinessStruct->CCC[i].sysno , innerStruct->DDD[i].SysSeqNo);
+		if(innerStruct->DDD[i].UserSeqNo == 1){
+			strcpy(businessStruct->CCC[i].sysno , innerStruct->DDD[i].SysSeqNo);
 		}
-		BusinessStruct->CCC[i].userseq = innerStruct->DDD[i].UserSeqNo;
-		BusinessStruct->CCC[i].checksum = innerStruct->DDD[i].CheckSum;
-		BusinessStruct->CCC[i].signature = innerStruct->DDD[i].Signature;
-		BusinessStruct->CCC[i].signatureLength = innerStruct->DDD[i].SignatureLength;
-		BusinessStruct->CCC[i].execid = innerStruct->DDD[i].ExecID;
+		businessStruct->CCC[i].userseq = innerStruct->DDD[i].UserSeqNo;
+		businessStruct->CCC[i].checksum = innerStruct->DDD[i].CheckSum;
+		businessStruct->CCC[i].signature = innerStruct->DDD[i].Signature;
+		businessStruct->CCC[i].signatureLength = innerStruct->DDD[i].SignatureLength;
+		businessStruct->CCC[i].execid = innerStruct->DDD[i].ExecID;
 	}
 
 	/*innerStruct->BBBlength group repeat */
 	for(int i=0; i<innerStruct->BBBlength;++i){
-		if(UserSeqNo == 1){
-			strcpy(BusinessStruct->AAA.sysno , innerStruct->BBB[i].SysSeqNo);
+		if(innerStruct->BBB[i].UserSeqNo == 1){
+			strcpy(businessStruct->AAA.sysno , innerStruct->BBB[i].SysSeqNo);
 		}
-		BusinessStruct->AAA.userseq = innerStruct->BBB[i].UserSeqNo;
-		BusinessStruct->AAA.checksum = innerStruct->BBB[i].CheckSum;
-		BusinessStruct->AAA.signature = innerStruct->BBB[i].Signature;
-		BusinessStruct->AAA.signatureLength = innerStruct->BBB[i].SignatureLength;
-		BusinessStruct->AAA.execid = innerStruct->BBB[i].ExecID;
+		businessStruct->AAA.userseq = innerStruct->BBB[i].UserSeqNo;
+		businessStruct->AAA.checksum = innerStruct->BBB[i].CheckSum;
+		businessStruct->AAA.signature = innerStruct->BBB[i].Signature;
+		businessStruct->AAA.signatureLength = innerStruct->BBB[i].SignatureLength;
+		businessStruct->AAA.execid = innerStruct->BBB[i].ExecID;
 	}
 
-	if(UserSeqNo == 1){
-		strcpy(*BusinessStruct.sysno , *innerStruct.SysSeqNo);
+	if(*innerStruct.UserSeqNo == 1){
+		strcpy(*businessStruct.sysno , *innerStruct.SysSeqNo);
 	}
-	*BusinessStruct.userseq = *innerStruct.UserSeqNo;
-	*BusinessStruct.checksum = *innerStruct.CheckSum;
-	*BusinessStruct.signature = *innerStruct.Signature;
-	*BusinessStruct.signatureLength = *innerStruct.SignatureLength;
-	*BusinessStruct.execid = *innerStruct.ExecID;
+	*businessStruct.userseq = *innerStruct.UserSeqNo;
+	*businessStruct.checksum = *innerStruct.CheckSum;
+	*businessStruct.signature = *innerStruct.Signature;
+	*businessStruct.signatureLength = *innerStruct.SignatureLength;
+	*businessStruct.execid = *innerStruct.ExecID;
 
 	returnValue = ADFResponseToADFResponseBusiness_special(innerStruct, businessStruct);
 	if(returnValue == false){
