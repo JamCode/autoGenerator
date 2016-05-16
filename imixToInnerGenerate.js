@@ -158,7 +158,7 @@ function parse(imixContent, fs, fileName){
             fs.appendFileSync(fileName, '\t\t\t\tFIELD_DETAILS child_field_array[256];\n');
             fs.appendFileSync(fileName, '\t\t\t\tCOUNT child_field_array_length;\n');
 
-            fs.appendFileSync(fileName, '\t\t\t\treturnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length, getLevel_' + msgName + ');\n');
+            fs.appendFileSync(fileName, '\t\t\t\treturnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length);\n');
             fs.appendFileSync(fileName, '\t\t\t\tif(returnValue == FALSE){\n');
             fs.appendFileSync(fileName, '\t\t\t\t\t'+printLogStr('getChildByIndex failed', 0, 'TRC_DBG', 'ERR_TRC'));
             fs.appendFileSync(fileName, '\t\t\t\t\treturn returnValue;\n');
