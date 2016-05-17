@@ -52,7 +52,7 @@ void getChild(FIELD_DETAILS* all_field_array,
 
 
 /* get one of repeat group */
-void getChildByIndex(FIELD_DETAILS* all_child_field_array,
+BOOL getChildByIndex(FIELD_DETAILS* all_child_field_array,
     COUNT all_child_field_array_length,
     COUNT index,
     FIELD_DETAILS* child_field_array,
@@ -78,7 +78,10 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
 	}
 	//index <0 or we can't find so many repeat groups
 	if(index != repeat)
-		return;
+	{
+		ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "Index %d is out of range", index);
+		return FALSE;
+	}
 	do{
 		FIELD_DETAILS ele = all_child_field_array[pos];
 		child_field_array[*child_field_array_length] = ele;
@@ -87,6 +90,7 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
 		if(pos>=all_child_field_array_length)
 			break;
 	}while(all_child_field_array[pos].field_name != field_ele.field_name);
+	return TRUE;
 	/*
     int i = 0;
     int j = 0;
