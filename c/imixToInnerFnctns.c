@@ -61,9 +61,27 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
 
     *child_field_array_length = 0;
     FIELD_DETAILS field_ele = all_child_field_array[0];
+	
+	int pos = 0;
+	int repeat = 0;
+	while(repeat < index && pos < all_child_field_array_length)
+	{
+		if(all_child_field_array[pos].field_name == field_ele.field_name)
+			repeat++;
+		pos++;
+	}
+	do{
+		FIELD_DETAILS ele = all_child_field_array[pos];
+		child_field_array[*child_field_array_length] = ele;
+		child_field_array_length++;
+		pos++;
+		if(pos<all_child_field_array_length)
+			break;
+	}while(all_child_field_array[pos].field_name != field_ele.field_name)
+	/*
     int i = 0;
     int j = 0;
-
+	
     for (i = 0, j=1; i < index&&j<all_child_field_array_length; ++j) {
         FIELD_DETAILS ele = all_child_field_array[j];
         if(ele.field_name == field_ele.field_name){
@@ -80,5 +98,6 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
             *child_field_array_length++;
         }
     }
+	*/
 
 }
