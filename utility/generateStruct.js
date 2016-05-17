@@ -2,13 +2,14 @@
 var imixConfig = require('../config/imixConfig.js');
 
 exports.generateStruct = function(structName, imixJson){
-    var structStr = generateAll(structName, imixJson);
+    console.log(structName+'_auto');
+    var structStr = generateAll(structName+'_auto', imixJson);
     console.log(structStr);
     return structStr;
 }
 
 function generateAll(structName, imixjson){
-    var struct = generate(imixjson.name, imixjson);
+    var struct = generate(structName, imixjson);
 
     if(imixjson.group === undefined||imixjson.group.length === 0){
         return struct;
@@ -45,6 +46,8 @@ function generate(structName, imixjson){
             return;
         }
 
+        e.name = e.name+'_auto';
+
         if (e.type === 'CHAR') {
             struct += '\t' + e.type + ' ' + e.name + '[512];/* field number '+e.number+'*/\n';
         }else{
@@ -53,8 +56,9 @@ function generate(structName, imixjson){
     });
 
     imixjson.group.forEach(function(e){
-        struct += '\tINT ' + e.name + 'Count;/* field number '+e.number+' */ \n';
-        struct += '\t' + e.name + ' ' + e.name + 'Array[128];\n';
+        e.name = e.name + '_auto';
+        struct += '\tINT ' + e.name + '_Count;/* field number '+e.number+' */ \n';
+        struct += '\t' + e.name + ' ' + e.name + '_Array[128];\n';
     });
 
     struct += '};\n';

@@ -15,6 +15,7 @@ fs.appendFileSync(fileName, '/* '+ (new Date).toLocaleString() +' */\n');
 fs.appendFileSync(fileName, '/* all imix field marco define */\n');
 
 imixJson.imix.fields.field.forEach(function(e){
+    e.name = e.name+'_auto';
     fs.appendFileSync(fileName, '#define '+e.name+ ' '+e.number+'\n');
 });
 

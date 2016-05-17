@@ -1,4 +1,3 @@
-typedef INT (*getLevel)(INDC);
 
 
 /*get top level nodes */
@@ -16,6 +15,7 @@ BOOL getNodes(FIELD_DETAILS* all_field_array,
 			if(tempLevel == level){
 				field_array[*filed_array_length] = all_field_array[i];
 				*filed_array_length++;
+            }
 		}
 		return TRUE;
 	}else{
@@ -38,7 +38,7 @@ void getChild(FIELD_DETAILS* all_field_array,
 		if (all_field_array[i].field_name == field_ele->field_name) {
 			INDC level = callFunc(atoi(all_field_array[i].field_name));
 			for (int j = i+1; j < all_field_array_length; j++) {
-				if (callFunc(atoi(all_field_array[j].field_name) > level) {
+				if (callFunc(atoi(all_field_array[j].field_name)) > level) {
 					all_child_field_array[*all_child_field_array_length] = all_field_array[j];
                     *all_child_field_array_length++;
 				}else{
@@ -72,7 +72,7 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
     }
 
     ++j;
-    
+
     for (; j<all_child_field_array_length; ++j) {
         FIELD_DETAILS ele = all_child_field_array[j];
         if(ele.field_name != field_ele.field_name){
