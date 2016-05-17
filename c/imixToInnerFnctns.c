@@ -73,7 +73,7 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
 	do{
 		FIELD_DETAILS ele = all_child_field_array[pos];
 		child_field_array[*child_field_array_length] = ele;
-		child_field_array_length++;
+		*child_field_array_length++;
 		pos++;
 		if(pos>=all_child_field_array_length)
 			break;
