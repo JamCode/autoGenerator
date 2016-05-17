@@ -64,12 +64,21 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
 	
 	int pos = 0;
 	int repeat = 0;
-	while(repeat < index && pos < all_child_field_array_length)
+	//make pos point to the first element of repeat group
+	if(index>0)
 	{
-		if(all_child_field_array[pos].field_name == field_ele.field_name)
-			repeat++;
-		pos++;
+		while(pos<all_child_field_array_length)
+		{
+			if(all_child_field_array[pos].field_name == field_ele.field_name)
+				repeat++;
+			if(repeat >= index)
+				break;
+			pos++;
+		}
 	}
+	//index <0 or we can't find so many repeat groups
+	if(index != repeat)
+		return;
 	do{
 		FIELD_DETAILS ele = all_child_field_array[pos];
 		child_field_array[*child_field_array_length] = ele;
@@ -77,7 +86,7 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
 		pos++;
 		if(pos>=all_child_field_array_length)
 			break;
-	}while(all_child_field_array[pos].field_name != field_ele.field_name)
+	}while(all_child_field_array[pos].field_name != field_ele.field_name);
 	/*
     int i = 0;
     int j = 0;
