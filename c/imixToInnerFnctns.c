@@ -64,7 +64,7 @@ BOOL getChildByIndex(FIELD_DETAILS* all_child_field_array,
 	
 	int pos = 0;
 	int repeat = 0;
-	//make pos point to the first element of repeat group
+	/*make pos point to the first element of repeat group*/
 	if(index>0)
 	{
 		while(pos<all_child_field_array_length)
@@ -76,7 +76,7 @@ BOOL getChildByIndex(FIELD_DETAILS* all_child_field_array,
 			pos++;
 		}
 	}
-	//index <0 or we can't find so many repeat groups
+	/*index <0 or we can't find so many repeat groups*/
 	if(index != repeat)
 	{
 		ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "Index %d is out of range", index);
