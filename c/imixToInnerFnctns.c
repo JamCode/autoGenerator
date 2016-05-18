@@ -52,7 +52,7 @@ void getChild(FIELD_DETAILS* all_field_array,
 
 
 /* get one of repeat group */
-void getChildByIndex(FIELD_DETAILS* all_child_field_array,
+BOOL getChildByIndex(FIELD_DETAILS* all_child_field_array,
     COUNT all_child_field_array_length,
     COUNT index,
     FIELD_DETAILS* child_field_array,
@@ -61,9 +61,40 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
 
     *child_field_array_length = 0;
     FIELD_DETAILS field_ele = all_child_field_array[0];
+	
+	int pos = 0;
+	int repeat = 0;
+	//make pos point to the first element of repeat group
+	if(index>0)
+	{
+		while(pos<all_child_field_array_length)
+		{
+			if(all_child_field_array[pos].field_name == field_ele.field_name)
+				repeat++;
+			if(repeat >= index)
+				break;
+			pos++;
+		}
+	}
+	//index <0 or we can't find so many repeat groups
+	if(index != repeat)
+	{
+		ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "Index %d is out of range", index);
+		return FALSE;
+	}
+	do{
+		FIELD_DETAILS ele = all_child_field_array[pos];
+		child_field_array[*child_field_array_length] = ele;
+		*child_field_array_length++;
+		pos++;
+		if(pos>=all_child_field_array_length)
+			break;
+	}while(all_child_field_array[pos].field_name != field_ele.field_name);
+	return TRUE;
+	/*
     int i = 0;
     int j = 0;
-
+	
     for (i = 0, j=1; i < index&&j<all_child_field_array_length; ++j) {
         FIELD_DETAILS ele = all_child_field_array[j];
         if(ele.field_name == field_ele.field_name){
@@ -80,5 +111,6 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
             *child_field_array_length++;
         }
     }
+	*/
 
 }
