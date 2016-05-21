@@ -8,6 +8,8 @@ if (process.argv.length !== 3) {
 var fs = require('fs');
 var path = require('path');
 var imixConvert = require('./utility/imixXML2json.js');
+var pFun = require('./publicFun.js');
+
 var msgName = process.argv[2];
 var imixJson = imixConvert.getIMIXFormat(msgName, 'imix.xml');
 
@@ -100,7 +102,8 @@ function parseLevel(imix, index){
     //处理子节点
     if(imix.field !== undefined){
         imix.field.forEach(function(e){
-            fs.appendFileSync(fileName, '\tif('+e.name+' == tag){return '+index+';}\n');
+			if(!pFun.isEmptyObject(e))
+				fs.appendFileSync(fileName, '\tif('+e.name+' == tag){return '+index+';}\n');
         });
     }
 
