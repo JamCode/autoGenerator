@@ -1,13 +1,14 @@
 var parser = require('xml2json');
 var fs = require('fs');
 
+//xml file to json
 exports.getIMIXJson = function(xmlName){
     var xml = fs.readFileSync(xmlName);
     var imixJsonStr = parser.toJson(xml);
     var imixJson = JSON.parse(imixJsonStr);
     return imixJson;
 }
-
+//return head + body + trailer fields ,and body's component
 exports.getIMIXFormat = function(msgName, xmlName){
     var xml = fs.readFileSync(xmlName);
     var imixJsonStr = parser.toJson(xml);
