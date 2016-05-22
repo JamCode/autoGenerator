@@ -1,11 +1,12 @@
 
 var imixConfig = require('../config/imixConfig.js');
-var pFun = require('../publicFun.js');
+
 exports.generateStruct = function(structName, imixJson){
     //console.log(structName+'_auto');
 	//add set ,so we won't add same struct
 	var structSet = new Set();
     var structStr = generateAll(structName, imixJson, structSet);
+	imixJson.name += '_auto';
     //console.log(structStr);
     return structStr;
 }
@@ -34,31 +35,26 @@ function generate(structName, imixjson, structset){
     //}
 	//change the type to our type like INDC,CHAR,BOOL and so on 
     var imixTypeMap = imixConfig.imixTypeMap;
-    //imixjson.field.forEach(function(e){
-    //    
-    //});
+    
 
 	console.log(structName);
-	//console.log(imixjson);
 	structName += '_auto';
-    var struct = 'typedef struct st_';
+    var struct = '\ntypedef struct st_';
     struct += structName+'{\n';
     imixjson.field.forEach(function(e){
-
-        if (pFun.isEmptyObject(e)) 
-            return;
+        
      
 		for (var variable in imixTypeMap) {
             if (e.type === variable) {
                 e.type = imixTypeMap[variable];
             }
         }
-        e.name = 'm_'+e.name+'_auto';
+        e.name = e.name+'_auto';
 
         if (e.type === 'CHAR') {
-            struct += '\t' + e.type + ' ' + e.name + '[512];/* field number '+e.number+'*/\n';
+            struct += '\t' + e.type + ' m_' + e.name + '[512];/* field number '+e.number+'*/\n';
         }else{
-            struct += '\t' + e.type + ' ' + e.name + ';/* field number '+e.number+'*/\n';
+            struct += '\t' + e.type + ' m_' + e.name + ';/* field number '+e.number+'*/\n';
         }
     });
 
