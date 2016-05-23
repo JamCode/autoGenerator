@@ -3,32 +3,27 @@ var imixConfig = require('../config/imixConfig.js');
 
 exports.generateStruct = function(structName, imixJson){
     //console.log(structName+'_auto');
-	//add set ,so we won't add same struct
-	var structSet = new Set();
-    var structStr = generateAll(structName, imixJson, structSet);
+    var structStr = generateAll(structName, imixJson);
 	imixJson.name += '_auto';
     //console.log(structStr);
     return structStr;
 }
 
-function generateAll(structName, imixjson, structset){
+function generateAll(structName, imixjson){
 	var struct = new String('');
 	if(!(imixjson.group === undefined||imixjson.group.length === 0))
 	{
 		imixjson.group.forEach(function(e){
-			struct = struct + generateAll(e.name, e, structset);
+			struct = struct + generateAll(e.name, e);
 		});
 	}
-    struct = struct + generate(structName, imixjson, structset);
+    struct = struct + generate(structName, imixjson);
     return struct;
 }
 
-function generate(structName, imixjson, structset){
+function generate(structName, imixjson){
 	
-	if(structset.has(structName))
-		return '';
-	else
-		structset.add(structName);
+	
 	
     //if(imixjson.field === undefined){
     //   return '';

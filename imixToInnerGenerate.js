@@ -102,13 +102,13 @@ function parseLevel(imix, index){
     //处理子节点
     if(imix.field !== undefined){
         imix.field.forEach(function(e){
-			fs.appendFileSync(fileName, '\tif(DF_'+e.name.toUpperCase()+' == tag){return '+index+';}\n');
+			fs.appendFileSync(fileName, '\tif('+e.name+' == tag){return '+index+';}\n');
         });
     }
 
     if(imix.group !== undefined){
         imix.group.forEach(function(e){
-            fs.appendFileSync(fileName, '\tif(DF_'+e.name.toUpperCase()+' == tag){return '+index+';}\n');
+            fs.appendFileSync(fileName, '\tif('+e.name+' == tag){return '+index+';}\n');
             parseLevel(e, index+1);
         });
     }
@@ -119,18 +119,21 @@ function parse(imixContent, fs, fileName){
     //处理叶子节点
     if(imixContent.field !== undefined){
         imixContent.field.forEach(function(e){
-            fs.appendFileSync(fileName, '\t\tif(tag == DF_'+e.name.toUpperCase()+')\n\t\t{\n');
+            fs.appendFileSync(fileName, '\t\tif(tag == '+e.name+')\n\t\t{\n');
             //console.log(e.type);
             if (e.type === 'CHAR') {
                 fs.appendFileSync(fileName, '\t\t\tstrncpy((ty_'+imixContent.name+'*)object->m_'+e.name+', field_ele->field_value, 511);\n');
+				 fs.appendFileSync(fileName, '\t\t\t'+printSetParaLog('(ty_'+imixContent.name+'*)object->m_'+e.name,'(ty_'+imixContent.name+'*)object->m_'+e.name,'field_ele->field_value', '%s', 0, 'TRC_DBG', 'ERR_TRC'));
             }
 
             if (e.type === 'INDC'||e.type === 'INT64') {
                 fs.appendFileSync(fileName, '\t\t\t(ty_'+imixContent.name+'*)object->m_'+e.name+'=atol(field_ele->field_value);\n');
+				fs.appendFileSync(fileName, '\t\t\t'+printSetParaLog('(ty_'+imixContent.name+'*)object->m_'+e.name,'(ty_'+imixContent.name+'*)object->m_'+e.name,'field_ele->field_value', '%d', 0, 'TRC_DBG', 'ERR_TRC'));
             }
 
             if (e.type === 'BOOL') {
                 fs.appendFileSync(fileName, '\t\t\t(ty_'+imixContent.name+'*)object->m_'+e.name+'=atol(field_ele->field_value);\n');
+				fs.appendFileSync(fileName, '\t\t\t'+printSetParaLog('(ty_'+imixContent.name+'*)object->m_'+e.name,'(ty_'+imixContent.name+'*)object->m_'+e.name,'field_ele->field_value', '%d', 0, 'TRC_DBG', 'ERR_TRC'));
             }
 
             fs.appendFileSync(fileName, '\t\t}\n\n');
@@ -141,7 +144,7 @@ function parse(imixContent, fs, fileName){
     if(imixContent.group !== undefined){
         imixContent.group.forEach(function(e){
 
-            fs.appendFileSync(fileName, '\t\tif(tag == DF_'+e.name.toUpperCase()+')\n\t\t{\n');
+            fs.appendFileSync(fileName, '\t\tif(tag == '+e.name+')\n\t\t{\n');
             fs.appendFileSync(fileName, '\t\t\tCOUNT repeatLength = atol(field_ele->field_value);\n');
             fs.appendFileSync(fileName, '\t\t\t(ty_'+imixContent.name+'*)object->m_'+e.name+'_Count = repeatLength;\n');
 
@@ -166,12 +169,15 @@ function parse(imixContent, fs, fileName){
             fs.appendFileSync(fileName, '\t\t\t\t\treturn returnValue;\n');
             fs.appendFileSync(fileName, '\t\t\t\t}\n');
 
-
+			fs.appendFileSync(fileName, '\t\t\t\t'+'ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),\"'+'Enter struct '+e.name+'[%d]",j);'+'\n');
+			
+			
             fs.appendFileSync(fileName, '\t\t\t\treturnValue = '+funcName+'(child_field_array, child_field_array_length, &(ty_'+imixContent.name+'*)object->m_'+e.name+'_Array[j]);\n');
             fs.appendFileSync(fileName, '\t\t\t\tif(returnValue == FALSE)\n\t\t\t\t{\n');
             fs.appendFileSync(fileName, '\t\t\t\t\t'+printLogStr(funcName+' failed', 0, 'TRC_DBG', 'ERR_TRC'));
             fs.appendFileSync(fileName, '\t\t\t\t\treturn returnValue;\n');
             fs.appendFileSync(fileName, '\t\t\t\t}\n');
+			fs.appendFileSync(fileName, '\t\t\t\t'+'ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),\"'+'Exit struct '+e.name+'[%d]",j);'+'\n');
             fs.appendFileSync(fileName, '\t\t\t}\n');
             fs.appendFileSync(fileName, '\t\t}\n\n');
             parse(e, fs, fileName);
@@ -182,5 +188,9 @@ function parse(imixContent, fs, fileName){
 
 function printLogStr(str, error_code, trc_level, err_level){
     var str = 'ProcessEventLog(__FILE__, __LINE__, '+trc_level+', '+err_level+', Info('+error_code+'), \"'+str+'\");\n';
+    return str;
+}
+function printSetParaLog(destPara, destVal, sourVal, valType, error_code, trc_level, err_level){
+	var str = 'ProcessEventLog(__FILE__, __LINE__, '+trc_level+', '+err_level+', Info('+error_code+'), \"'+destPara+' is set to '+valType+ '. The source data is : '+valType+' \",'+ destVal +','+ sourVal +');\n';
     return str;
 }
