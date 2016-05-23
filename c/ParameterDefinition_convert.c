@@ -1,84 +1,91 @@
-/*5/17/2016, 2:12:27 PM*/
+/*2016-05-23 11:17:32*/
 #include <fieldMacroDefine.h>
-struct ParameterDefinition_auto{
-	CHAR BeginString_auto[512];/* field number 8*/
-	INDC BodyLength_auto;/* field number 9*/
-	undefined undefined_auto;/* field number undefined*/
-	CHAR MsgType_auto[512];/* field number 35*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	CHAR CheckSum_auto[512];/* field number 10*/
-	undefined undefined_auto;/* field number undefined*/
-	undefined undefined_auto;/* field number undefined*/
-	CHAR ParameterDefinitionAction_auto[512];/* field number 11160*/
-	CHAR ParameterDefinitionType_auto[512];/* field number 11159*/
-	CHAR ApplID_auto[512];/* field number 1180*/
-	INDC ApplLastSeqNum_auto;/* field number 1350*/
-	INDC ApplRefSeqNum_auto;/* field number 11262*/
-	BOOL ApplResendFlag_auto;/* field number 1352*/
-	INDC ApplSeqNum_auto;/* field number 1181*/
-	CHAR ApplToken_auto[512];/* field number 11233*/
-	CHAR ApplErrorCode_auto[512];/* field number 11251*/
-	CHAR ApplErrorDesc_auto[512];/* field number 11261*/
-	CHAR ApplUniqueKey_auto[512];/* field number 11252*/
-	INT NoParameterDefinitions_auto_Count;/* field number 11158 */ 
-	NoParameterDefinitions_auto NoParameterDefinitions_auto_Array[128];
-	INT NoPartyIDs_auto_Count;/* field number 453 */ 
-	NoPartyIDs_auto NoPartyIDs_auto_Array[128];
-};
-struct NoParameterDefinitions_auto{
-	CHAR ParameterValue_auto[512];/* field number 11157*/
-	INT64 EffectiveEndTime_auto;/* field number 11367*/
-	INT64 EffectiveStartTime_auto;/* field number 11366*/
-	CHAR ParameterStatus_auto[512];/* field number 11363*/
-	CHAR ParameterType_auto[512];/* field number 11156*/
-	CHAR RelationshipID_auto[512];/* field number 11364*/
-	CHAR UpdateAction_auto[512];/* field number 11365*/
-	INT NoContactInfos_auto_Count;/* field number 10601 */ 
-	NoContactInfos_auto NoContactInfos_auto_Array[128];
-	INT NoParameterDefinitionSubID_auto_Count;/* field number 11368 */ 
-	NoParameterDefinitionSubID_auto NoParameterDefinitionSubID_auto_Array[128];
-};
-struct NoContactInfos_auto{
-	CHAR ContactInfoID_auto[512];/* field number 10602*/
-	INT64 ContactInfoIDType_auto;/* field number 10603*/
-};
-struct NoParameterDefinitionSubID_auto{
-	CHAR ParameterSubID_auto[512];/* field number 11369*/
-	CHAR ParameterSubIDType_auto[512];/* field number 11370*/
-};
-struct NoPartyIDs_auto{
-	CHAR PartyID_auto[512];/* field number 448*/
-	INT64 PartyRole_auto;/* field number 452*/
-	INT64 PartyRoleQualifier_auto;/* field number 2376*/
-	INT NoPartySubIDs_auto_Count;/* field number 802 */ 
-	NoPartySubIDs_auto NoPartySubIDs_auto_Array[128];
-};
-struct NoPartySubIDs_auto{
-	CHAR PartySubID_auto[512];/* field number 523*/
-	INT64 PartySubIDType_auto;/* field number 803*/
-};
 
-INT getLevel_ParameterDefinition(INDC tag){
+typedef struct st_NoContactInfos_auto{
+	CHAR m_ContactInfoID_auto[512];/* field number 10602*/
+	INT64 m_ContactInfoIDType_auto;/* field number 10603*/
+}ty_NoContactInfos_auto;
+
+typedef struct st_NoParameterDefinitionSubID_auto{
+	CHAR m_ParameterSubID_auto[512];/* field number 11369*/
+	CHAR m_ParameterSubIDType_auto[512];/* field number 11370*/
+}ty_NoParameterDefinitionSubID_auto;
+
+typedef struct st_NoParameterDefinitions_auto{
+	CHAR m_ParameterValue_auto[512];/* field number 11157*/
+	INT64 m_EffectiveEndTime_auto;/* field number 11367*/
+	INT64 m_EffectiveStartTime_auto;/* field number 11366*/
+	CHAR m_ParameterStatus_auto[512];/* field number 11363*/
+	CHAR m_ParameterType_auto[512];/* field number 11156*/
+	CHAR m_RelationshipID_auto[512];/* field number 11364*/
+	CHAR m_UpdateAction_auto[512];/* field number 11365*/
+	INT m_NoContactInfos_auto_Count;/* field number 10601 */ 
+	ty_NoContactInfos_auto m_NoContactInfos_auto_Array[128];
+	INT m_NoParameterDefinitionSubID_auto_Count;/* field number 11368 */ 
+	ty_NoParameterDefinitionSubID_auto m_NoParameterDefinitionSubID_auto_Array[128];
+}ty_NoParameterDefinitions_auto;
+
+typedef struct st_NoPartySubIDs_auto{
+	CHAR m_PartySubID_auto[512];/* field number 523*/
+	INT64 m_PartySubIDType_auto;/* field number 803*/
+}ty_NoPartySubIDs_auto;
+
+typedef struct st_NoPartyIDs_auto{
+	CHAR m_PartyID_auto[512];/* field number 448*/
+	INT64 m_PartyRole_auto;/* field number 452*/
+	INT64 m_PartyRoleQualifier_auto;/* field number 2376*/
+	INT m_NoPartySubIDs_auto_Count;/* field number 802 */ 
+	ty_NoPartySubIDs_auto m_NoPartySubIDs_auto_Array[128];
+}ty_NoPartyIDs_auto;
+
+typedef struct st_ParameterDefinition_auto{
+	CHAR m_BeginString_auto[512];/* field number 8*/
+	INDC m_BodyLength_auto;/* field number 9*/
+	undefined m_undefined_auto;/* field number undefined*/
+	CHAR m_MsgType_auto[512];/* field number 35*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	CHAR m_CheckSum_auto[512];/* field number 10*/
+	undefined m_undefined_auto;/* field number undefined*/
+	undefined m_undefined_auto;/* field number undefined*/
+	CHAR m_ParameterDefinitionAction_auto[512];/* field number 11160*/
+	CHAR m_ParameterDefinitionType_auto[512];/* field number 11159*/
+	CHAR m_ApplID_auto[512];/* field number 1180*/
+	INDC m_ApplLastSeqNum_auto;/* field number 1350*/
+	INDC m_ApplRefSeqNum_auto;/* field number 11262*/
+	BOOL m_ApplResendFlag_auto;/* field number 1352*/
+	INDC m_ApplSeqNum_auto;/* field number 1181*/
+	CHAR m_ApplToken_auto[512];/* field number 11233*/
+	CHAR m_ApplErrorCode_auto[512];/* field number 11251*/
+	CHAR m_ApplErrorDesc_auto[512];/* field number 11261*/
+	CHAR m_ApplUniqueKey_auto[512];/* field number 11252*/
+	INT m_NoParameterDefinitions_auto_Count;/* field number 11158 */ 
+	ty_NoParameterDefinitions_auto m_NoParameterDefinitions_auto_Array[128];
+	INT m_NoPartyIDs_auto_Count;/* field number 453 */ 
+	ty_NoPartyIDs_auto m_NoPartyIDs_auto_Array[128];
+}ty_ParameterDefinition_auto;
+
+INT getLevel_ParameterDefinition(INDC tag)
+{
 	if(BeginString_auto == tag){return 0;}
 	if(BodyLength_auto == tag){return 0;}
 	if(undefined_auto == tag){return 0;}
@@ -140,341 +147,466 @@ INT getLevel_ParameterDefinition(INDC tag){
 	if(PartySubID_auto == tag){return 2;}
 	if(PartySubIDType_auto == tag){return 2;}
 }
-BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all_field_array_length, char* object){
+
+BOOL ParameterDefinition_convert_inner(FIELD_DETAILS *all_field_array, COUNT all_field_array_length, char* object)
+{
 	FIELD_DETAILS field_array[256];
 	COUNT filed_array_length = 0;
 	BOOL returnValue = getNodes(all_field_array, all_field_array_length, &field_array, &filed_array_length, getLevel_ParameterDefinition);
-	if(returnValue == FALSE){
+	if(returnValue == FALSE)
+	{
 		ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getNodes failed");
 		return returnValue;
 	}
-	for(int i=0;i<filed_array_length;++i){
+	for(int i=0;i<filed_array_length;++i)
+	{
 		FIELD_DETAILS *field_ele = &field_array[i];
 		INDC tag = atoi(field_ele->field_name);
-		if(tag == BeginString_auto){
-			strncpy((ParameterDefinition*)object->BeginString_auto, field_ele->field_value, 511);
+		if(tag == BeginString_auto)
+		{
+			strncpy((ty_ParameterDefinition_auto*)object->m_BeginString_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_BeginString_auto is set to %s. The source data is : %s ",(ty_ParameterDefinition_auto*)object->m_BeginString_auto,field_ele->field_value);
 		}
 
-		if(tag == BodyLength_auto){
-			(ParameterDefinition*)object->BodyLength_auto=atol(field_ele->field_value);
+		if(tag == BodyLength_auto)
+		{
+			(ty_ParameterDefinition_auto*)object->m_BodyLength_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_BodyLength_auto is set to %d. The source data is : %d ",(ty_ParameterDefinition_auto*)object->m_BodyLength_auto,field_ele->field_value);
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == MsgType_auto){
-			strncpy((ParameterDefinition*)object->MsgType_auto, field_ele->field_value, 511);
+		if(tag == MsgType_auto)
+		{
+			strncpy((ty_ParameterDefinition_auto*)object->m_MsgType_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_MsgType_auto is set to %s. The source data is : %s ",(ty_ParameterDefinition_auto*)object->m_MsgType_auto,field_ele->field_value);
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == CheckSum_auto){
-			strncpy((ParameterDefinition*)object->CheckSum_auto, field_ele->field_value, 511);
+		if(tag == CheckSum_auto)
+		{
+			strncpy((ty_ParameterDefinition_auto*)object->m_CheckSum_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_CheckSum_auto is set to %s. The source data is : %s ",(ty_ParameterDefinition_auto*)object->m_CheckSum_auto,field_ele->field_value);
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == undefined_auto){
+		if(tag == undefined_auto)
+		{
 		}
 
-		if(tag == ParameterDefinitionAction_auto){
-			strncpy((ParameterDefinition*)object->ParameterDefinitionAction_auto, field_ele->field_value, 511);
+		if(tag == ParameterDefinitionAction_auto)
+		{
+			strncpy((ty_ParameterDefinition_auto*)object->m_ParameterDefinitionAction_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ParameterDefinitionAction_auto is set to %s. The source data is : %s ",(ty_ParameterDefinition_auto*)object->m_ParameterDefinitionAction_auto,field_ele->field_value);
 		}
 
-		if(tag == ParameterDefinitionType_auto){
-			strncpy((ParameterDefinition*)object->ParameterDefinitionType_auto, field_ele->field_value, 511);
+		if(tag == ParameterDefinitionType_auto)
+		{
+			strncpy((ty_ParameterDefinition_auto*)object->m_ParameterDefinitionType_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ParameterDefinitionType_auto is set to %s. The source data is : %s ",(ty_ParameterDefinition_auto*)object->m_ParameterDefinitionType_auto,field_ele->field_value);
 		}
 
-		if(tag == ApplID_auto){
-			strncpy((ParameterDefinition*)object->ApplID_auto, field_ele->field_value, 511);
+		if(tag == ApplID_auto)
+		{
+			strncpy((ty_ParameterDefinition_auto*)object->m_ApplID_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ApplID_auto is set to %s. The source data is : %s ",(ty_ParameterDefinition_auto*)object->m_ApplID_auto,field_ele->field_value);
 		}
 
-		if(tag == ApplLastSeqNum_auto){
-			(ParameterDefinition*)object->ApplLastSeqNum_auto=atol(field_ele->field_value);
+		if(tag == ApplLastSeqNum_auto)
+		{
+			(ty_ParameterDefinition_auto*)object->m_ApplLastSeqNum_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ApplLastSeqNum_auto is set to %d. The source data is : %d ",(ty_ParameterDefinition_auto*)object->m_ApplLastSeqNum_auto,field_ele->field_value);
 		}
 
-		if(tag == ApplRefSeqNum_auto){
-			(ParameterDefinition*)object->ApplRefSeqNum_auto=atol(field_ele->field_value);
+		if(tag == ApplRefSeqNum_auto)
+		{
+			(ty_ParameterDefinition_auto*)object->m_ApplRefSeqNum_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ApplRefSeqNum_auto is set to %d. The source data is : %d ",(ty_ParameterDefinition_auto*)object->m_ApplRefSeqNum_auto,field_ele->field_value);
 		}
 
-		if(tag == ApplResendFlag_auto){
-			(ParameterDefinition*)object->ApplResendFlag_auto=atol(field_ele->field_value);
+		if(tag == ApplResendFlag_auto)
+		{
+			(ty_ParameterDefinition_auto*)object->m_ApplResendFlag_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ApplResendFlag_auto is set to %d. The source data is : %d ",(ty_ParameterDefinition_auto*)object->m_ApplResendFlag_auto,field_ele->field_value);
 		}
 
-		if(tag == ApplSeqNum_auto){
-			(ParameterDefinition*)object->ApplSeqNum_auto=atol(field_ele->field_value);
+		if(tag == ApplSeqNum_auto)
+		{
+			(ty_ParameterDefinition_auto*)object->m_ApplSeqNum_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ApplSeqNum_auto is set to %d. The source data is : %d ",(ty_ParameterDefinition_auto*)object->m_ApplSeqNum_auto,field_ele->field_value);
 		}
 
-		if(tag == ApplToken_auto){
-			strncpy((ParameterDefinition*)object->ApplToken_auto, field_ele->field_value, 511);
+		if(tag == ApplToken_auto)
+		{
+			strncpy((ty_ParameterDefinition_auto*)object->m_ApplToken_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ApplToken_auto is set to %s. The source data is : %s ",(ty_ParameterDefinition_auto*)object->m_ApplToken_auto,field_ele->field_value);
 		}
 
-		if(tag == ApplErrorCode_auto){
-			strncpy((ParameterDefinition*)object->ApplErrorCode_auto, field_ele->field_value, 511);
+		if(tag == ApplErrorCode_auto)
+		{
+			strncpy((ty_ParameterDefinition_auto*)object->m_ApplErrorCode_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ApplErrorCode_auto is set to %s. The source data is : %s ",(ty_ParameterDefinition_auto*)object->m_ApplErrorCode_auto,field_ele->field_value);
 		}
 
-		if(tag == ApplErrorDesc_auto){
-			strncpy((ParameterDefinition*)object->ApplErrorDesc_auto, field_ele->field_value, 511);
+		if(tag == ApplErrorDesc_auto)
+		{
+			strncpy((ty_ParameterDefinition_auto*)object->m_ApplErrorDesc_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ApplErrorDesc_auto is set to %s. The source data is : %s ",(ty_ParameterDefinition_auto*)object->m_ApplErrorDesc_auto,field_ele->field_value);
 		}
 
-		if(tag == ApplUniqueKey_auto){
-			strncpy((ParameterDefinition*)object->ApplUniqueKey_auto, field_ele->field_value, 511);
+		if(tag == ApplUniqueKey_auto)
+		{
+			strncpy((ty_ParameterDefinition_auto*)object->m_ApplUniqueKey_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_ParameterDefinition_auto*)object->m_ApplUniqueKey_auto is set to %s. The source data is : %s ",(ty_ParameterDefinition_auto*)object->m_ApplUniqueKey_auto,field_ele->field_value);
 		}
 
-		if(tag == NoParameterDefinitions_auto){
+		if(tag == NoParameterDefinitions_auto)
+		{
 			COUNT repeatLength = atol(field_ele->field_value);
-			(ParameterDefinition*)object->NoParameterDefinitions_autoCount = repeatLength;
+			(ty_ParameterDefinition_auto*)object->m_NoParameterDefinitions_auto_Count = repeatLength;
 			FIELD_DETAILS all_child_field_array[256];
 			COUNT all_child_field_array_length;
 			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_ParameterDefinition);
-			if(returnValue == FALSE){
+			if(returnValue == FALSE)
+			{
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
 			}
-			for(int j=0;j<repeatLength;++j){
+			for(int j=0;j<repeatLength;++j)
+			{
 				FIELD_DETAILS child_field_array[256];
 				COUNT child_field_array_length;
 				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length);
-				if(returnValue == FALSE){
+				if(returnValue == FALSE)
+				{
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
 				}
-				returnValue = ParameterDefinition_convert_inner(child_field_array, child_field_array_length, &object->NoParameterDefinitions_autoArray[j]);
-				if(returnValue == FALSE){
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),"Enter struct NoParameterDefinitions_auto[%d]",j);
+				returnValue = ParameterDefinition_convert_inner(child_field_array, child_field_array_length, &(ty_ParameterDefinition_auto*)object->m_NoParameterDefinitions_auto_Array[j]);
+				if(returnValue == FALSE)
+				{
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "ParameterDefinition_convert_inner failed");
 					return returnValue;
 				}
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),"Exit struct NoParameterDefinitions_auto[%d]",j);
 			}
 		}
 
-		if(tag == ParameterValue_auto){
-			strncpy((NoParameterDefinitions_auto*)object->ParameterValue_auto, field_ele->field_value, 511);
+		if(tag == ParameterValue_auto)
+		{
+			strncpy((ty_NoParameterDefinitions_auto*)object->m_ParameterValue_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoParameterDefinitions_auto*)object->m_ParameterValue_auto is set to %s. The source data is : %s ",(ty_NoParameterDefinitions_auto*)object->m_ParameterValue_auto,field_ele->field_value);
 		}
 
-		if(tag == EffectiveEndTime_auto){
-			(NoParameterDefinitions_auto*)object->EffectiveEndTime_auto=atol(field_ele->field_value);
+		if(tag == EffectiveEndTime_auto)
+		{
+			(ty_NoParameterDefinitions_auto*)object->m_EffectiveEndTime_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoParameterDefinitions_auto*)object->m_EffectiveEndTime_auto is set to %d. The source data is : %d ",(ty_NoParameterDefinitions_auto*)object->m_EffectiveEndTime_auto,field_ele->field_value);
 		}
 
-		if(tag == EffectiveStartTime_auto){
-			(NoParameterDefinitions_auto*)object->EffectiveStartTime_auto=atol(field_ele->field_value);
+		if(tag == EffectiveStartTime_auto)
+		{
+			(ty_NoParameterDefinitions_auto*)object->m_EffectiveStartTime_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoParameterDefinitions_auto*)object->m_EffectiveStartTime_auto is set to %d. The source data is : %d ",(ty_NoParameterDefinitions_auto*)object->m_EffectiveStartTime_auto,field_ele->field_value);
 		}
 
-		if(tag == ParameterStatus_auto){
-			strncpy((NoParameterDefinitions_auto*)object->ParameterStatus_auto, field_ele->field_value, 511);
+		if(tag == ParameterStatus_auto)
+		{
+			strncpy((ty_NoParameterDefinitions_auto*)object->m_ParameterStatus_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoParameterDefinitions_auto*)object->m_ParameterStatus_auto is set to %s. The source data is : %s ",(ty_NoParameterDefinitions_auto*)object->m_ParameterStatus_auto,field_ele->field_value);
 		}
 
-		if(tag == ParameterType_auto){
-			strncpy((NoParameterDefinitions_auto*)object->ParameterType_auto, field_ele->field_value, 511);
+		if(tag == ParameterType_auto)
+		{
+			strncpy((ty_NoParameterDefinitions_auto*)object->m_ParameterType_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoParameterDefinitions_auto*)object->m_ParameterType_auto is set to %s. The source data is : %s ",(ty_NoParameterDefinitions_auto*)object->m_ParameterType_auto,field_ele->field_value);
 		}
 
-		if(tag == RelationshipID_auto){
-			strncpy((NoParameterDefinitions_auto*)object->RelationshipID_auto, field_ele->field_value, 511);
+		if(tag == RelationshipID_auto)
+		{
+			strncpy((ty_NoParameterDefinitions_auto*)object->m_RelationshipID_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoParameterDefinitions_auto*)object->m_RelationshipID_auto is set to %s. The source data is : %s ",(ty_NoParameterDefinitions_auto*)object->m_RelationshipID_auto,field_ele->field_value);
 		}
 
-		if(tag == UpdateAction_auto){
-			strncpy((NoParameterDefinitions_auto*)object->UpdateAction_auto, field_ele->field_value, 511);
+		if(tag == UpdateAction_auto)
+		{
+			strncpy((ty_NoParameterDefinitions_auto*)object->m_UpdateAction_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoParameterDefinitions_auto*)object->m_UpdateAction_auto is set to %s. The source data is : %s ",(ty_NoParameterDefinitions_auto*)object->m_UpdateAction_auto,field_ele->field_value);
 		}
 
-		if(tag == NoContactInfos_auto){
+		if(tag == NoContactInfos_auto)
+		{
 			COUNT repeatLength = atol(field_ele->field_value);
-			(NoParameterDefinitions_auto*)object->NoContactInfos_autoCount = repeatLength;
+			(ty_NoParameterDefinitions_auto*)object->m_NoContactInfos_auto_Count = repeatLength;
 			FIELD_DETAILS all_child_field_array[256];
 			COUNT all_child_field_array_length;
 			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_ParameterDefinition);
-			if(returnValue == FALSE){
+			if(returnValue == FALSE)
+			{
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
 			}
-			for(int j=0;j<repeatLength;++j){
+			for(int j=0;j<repeatLength;++j)
+			{
 				FIELD_DETAILS child_field_array[256];
 				COUNT child_field_array_length;
 				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length);
-				if(returnValue == FALSE){
+				if(returnValue == FALSE)
+				{
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
 				}
-				returnValue = ParameterDefinition_convert_inner(child_field_array, child_field_array_length, &object->NoContactInfos_autoArray[j]);
-				if(returnValue == FALSE){
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),"Enter struct NoContactInfos_auto[%d]",j);
+				returnValue = ParameterDefinition_convert_inner(child_field_array, child_field_array_length, &(ty_NoParameterDefinitions_auto*)object->m_NoContactInfos_auto_Array[j]);
+				if(returnValue == FALSE)
+				{
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "ParameterDefinition_convert_inner failed");
 					return returnValue;
 				}
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),"Exit struct NoContactInfos_auto[%d]",j);
 			}
 		}
 
-		if(tag == ContactInfoID_auto){
-			strncpy((NoContactInfos_auto*)object->ContactInfoID_auto, field_ele->field_value, 511);
+		if(tag == ContactInfoID_auto)
+		{
+			strncpy((ty_NoContactInfos_auto*)object->m_ContactInfoID_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoContactInfos_auto*)object->m_ContactInfoID_auto is set to %s. The source data is : %s ",(ty_NoContactInfos_auto*)object->m_ContactInfoID_auto,field_ele->field_value);
 		}
 
-		if(tag == ContactInfoIDType_auto){
-			(NoContactInfos_auto*)object->ContactInfoIDType_auto=atol(field_ele->field_value);
+		if(tag == ContactInfoIDType_auto)
+		{
+			(ty_NoContactInfos_auto*)object->m_ContactInfoIDType_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoContactInfos_auto*)object->m_ContactInfoIDType_auto is set to %d. The source data is : %d ",(ty_NoContactInfos_auto*)object->m_ContactInfoIDType_auto,field_ele->field_value);
 		}
 
-		if(tag == NoParameterDefinitionSubID_auto){
+		if(tag == NoParameterDefinitionSubID_auto)
+		{
 			COUNT repeatLength = atol(field_ele->field_value);
-			(NoParameterDefinitions_auto*)object->NoParameterDefinitionSubID_autoCount = repeatLength;
+			(ty_NoParameterDefinitions_auto*)object->m_NoParameterDefinitionSubID_auto_Count = repeatLength;
 			FIELD_DETAILS all_child_field_array[256];
 			COUNT all_child_field_array_length;
 			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_ParameterDefinition);
-			if(returnValue == FALSE){
+			if(returnValue == FALSE)
+			{
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
 			}
-			for(int j=0;j<repeatLength;++j){
+			for(int j=0;j<repeatLength;++j)
+			{
 				FIELD_DETAILS child_field_array[256];
 				COUNT child_field_array_length;
 				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length);
-				if(returnValue == FALSE){
+				if(returnValue == FALSE)
+				{
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
 				}
-				returnValue = ParameterDefinition_convert_inner(child_field_array, child_field_array_length, &object->NoParameterDefinitionSubID_autoArray[j]);
-				if(returnValue == FALSE){
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),"Enter struct NoParameterDefinitionSubID_auto[%d]",j);
+				returnValue = ParameterDefinition_convert_inner(child_field_array, child_field_array_length, &(ty_NoParameterDefinitions_auto*)object->m_NoParameterDefinitionSubID_auto_Array[j]);
+				if(returnValue == FALSE)
+				{
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "ParameterDefinition_convert_inner failed");
 					return returnValue;
 				}
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),"Exit struct NoParameterDefinitionSubID_auto[%d]",j);
 			}
 		}
 
-		if(tag == ParameterSubID_auto){
-			strncpy((NoParameterDefinitionSubID_auto*)object->ParameterSubID_auto, field_ele->field_value, 511);
+		if(tag == ParameterSubID_auto)
+		{
+			strncpy((ty_NoParameterDefinitionSubID_auto*)object->m_ParameterSubID_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoParameterDefinitionSubID_auto*)object->m_ParameterSubID_auto is set to %s. The source data is : %s ",(ty_NoParameterDefinitionSubID_auto*)object->m_ParameterSubID_auto,field_ele->field_value);
 		}
 
-		if(tag == ParameterSubIDType_auto){
-			strncpy((NoParameterDefinitionSubID_auto*)object->ParameterSubIDType_auto, field_ele->field_value, 511);
+		if(tag == ParameterSubIDType_auto)
+		{
+			strncpy((ty_NoParameterDefinitionSubID_auto*)object->m_ParameterSubIDType_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoParameterDefinitionSubID_auto*)object->m_ParameterSubIDType_auto is set to %s. The source data is : %s ",(ty_NoParameterDefinitionSubID_auto*)object->m_ParameterSubIDType_auto,field_ele->field_value);
 		}
 
-		if(tag == NoPartyIDs_auto){
+		if(tag == NoPartyIDs_auto)
+		{
 			COUNT repeatLength = atol(field_ele->field_value);
-			(ParameterDefinition*)object->NoPartyIDs_autoCount = repeatLength;
+			(ty_ParameterDefinition_auto*)object->m_NoPartyIDs_auto_Count = repeatLength;
 			FIELD_DETAILS all_child_field_array[256];
 			COUNT all_child_field_array_length;
 			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_ParameterDefinition);
-			if(returnValue == FALSE){
+			if(returnValue == FALSE)
+			{
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
 			}
-			for(int j=0;j<repeatLength;++j){
+			for(int j=0;j<repeatLength;++j)
+			{
 				FIELD_DETAILS child_field_array[256];
 				COUNT child_field_array_length;
 				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length);
-				if(returnValue == FALSE){
+				if(returnValue == FALSE)
+				{
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
 				}
-				returnValue = ParameterDefinition_convert_inner(child_field_array, child_field_array_length, &object->NoPartyIDs_autoArray[j]);
-				if(returnValue == FALSE){
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),"Enter struct NoPartyIDs_auto[%d]",j);
+				returnValue = ParameterDefinition_convert_inner(child_field_array, child_field_array_length, &(ty_ParameterDefinition_auto*)object->m_NoPartyIDs_auto_Array[j]);
+				if(returnValue == FALSE)
+				{
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "ParameterDefinition_convert_inner failed");
 					return returnValue;
 				}
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),"Exit struct NoPartyIDs_auto[%d]",j);
 			}
 		}
 
-		if(tag == PartyID_auto){
-			strncpy((NoPartyIDs_auto*)object->PartyID_auto, field_ele->field_value, 511);
+		if(tag == PartyID_auto)
+		{
+			strncpy((ty_NoPartyIDs_auto*)object->m_PartyID_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoPartyIDs_auto*)object->m_PartyID_auto is set to %s. The source data is : %s ",(ty_NoPartyIDs_auto*)object->m_PartyID_auto,field_ele->field_value);
 		}
 
-		if(tag == PartyRole_auto){
-			(NoPartyIDs_auto*)object->PartyRole_auto=atol(field_ele->field_value);
+		if(tag == PartyRole_auto)
+		{
+			(ty_NoPartyIDs_auto*)object->m_PartyRole_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoPartyIDs_auto*)object->m_PartyRole_auto is set to %d. The source data is : %d ",(ty_NoPartyIDs_auto*)object->m_PartyRole_auto,field_ele->field_value);
 		}
 
-		if(tag == PartyRoleQualifier_auto){
-			(NoPartyIDs_auto*)object->PartyRoleQualifier_auto=atol(field_ele->field_value);
+		if(tag == PartyRoleQualifier_auto)
+		{
+			(ty_NoPartyIDs_auto*)object->m_PartyRoleQualifier_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoPartyIDs_auto*)object->m_PartyRoleQualifier_auto is set to %d. The source data is : %d ",(ty_NoPartyIDs_auto*)object->m_PartyRoleQualifier_auto,field_ele->field_value);
 		}
 
-		if(tag == NoPartySubIDs_auto){
+		if(tag == NoPartySubIDs_auto)
+		{
 			COUNT repeatLength = atol(field_ele->field_value);
-			(NoPartyIDs_auto*)object->NoPartySubIDs_autoCount = repeatLength;
+			(ty_NoPartyIDs_auto*)object->m_NoPartySubIDs_auto_Count = repeatLength;
 			FIELD_DETAILS all_child_field_array[256];
 			COUNT all_child_field_array_length;
 			returnValue = getChild(all_field_array, all_field_array_length, field_ele, all_child_field_array, &all_child_field_array_length, getLevel_ParameterDefinition);
-			if(returnValue == FALSE){
+			if(returnValue == FALSE)
+			{
 				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChild failed");
 				return returnValue;
 			}
-			for(int j=0;j<repeatLength;++j){
+			for(int j=0;j<repeatLength;++j)
+			{
 				FIELD_DETAILS child_field_array[256];
 				COUNT child_field_array_length;
 				returnValue = getChildByIndex(all_child_field_array, all_child_field_array_length, j, child_field_array, &child_field_array_length);
-				if(returnValue == FALSE){
+				if(returnValue == FALSE)
+				{
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "getChildByIndex failed");
 					return returnValue;
 				}
-				returnValue = ParameterDefinition_convert_inner(child_field_array, child_field_array_length, &object->NoPartySubIDs_autoArray[j]);
-				if(returnValue == FALSE){
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),"Enter struct NoPartySubIDs_auto[%d]",j);
+				returnValue = ParameterDefinition_convert_inner(child_field_array, child_field_array_length, &(ty_NoPartyIDs_auto*)object->m_NoPartySubIDs_auto_Array[j]);
+				if(returnValue == FALSE)
+				{
 					ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "ParameterDefinition_convert_inner failed");
 					return returnValue;
 				}
+				ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),"Exit struct NoPartySubIDs_auto[%d]",j);
 			}
 		}
 
-		if(tag == PartySubID_auto){
-			strncpy((NoPartySubIDs_auto*)object->PartySubID_auto, field_ele->field_value, 511);
+		if(tag == PartySubID_auto)
+		{
+			strncpy((ty_NoPartySubIDs_auto*)object->m_PartySubID_auto, field_ele->field_value, 511);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoPartySubIDs_auto*)object->m_PartySubID_auto is set to %s. The source data is : %s ",(ty_NoPartySubIDs_auto*)object->m_PartySubID_auto,field_ele->field_value);
 		}
 
-		if(tag == PartySubIDType_auto){
-			(NoPartySubIDs_auto*)object->PartySubIDType_auto=atol(field_ele->field_value);
+		if(tag == PartySubIDType_auto)
+		{
+			(ty_NoPartySubIDs_auto*)object->m_PartySubIDType_auto=atol(field_ele->field_value);
+			ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "(ty_NoPartySubIDs_auto*)object->m_PartySubIDType_auto is set to %d. The source data is : %d ",(ty_NoPartySubIDs_auto*)object->m_PartySubIDType_auto,field_ele->field_value);
 		}
 
 	}
