@@ -1,3 +1,9 @@
+#ifndef _IMIXTOINNERFNCTNS_H_
+#define _IMIXTOINNERFNCTNS_H_
+
+#include "fieldMacroDefine.h"
+#include "DataCtgry.h"
+
 typedef INT (*getLevel)(INDC);
 
 BOOL getNodes(FIELD_DETAILS* all_field_array,
@@ -18,3 +24,5 @@ void getChildByIndex(FIELD_DETAILS* all_child_field_array,
     COUNT index,
     FIELD_DETAILS* child_field_array,
     COUNT* child_field_array_length);
+
+#endif
