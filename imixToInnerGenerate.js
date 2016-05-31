@@ -133,18 +133,23 @@ function parse(imixContent, fs, C_FileName){
             fs.appendFileSync(C_FileName, '\t\tif(tag == '+e.name+')\n\t\t{\n');
             //console.log(e.type);
             if (e.type === 'CHAR') {
-                fs.appendFileSync(C_FileName, '\t\t\tstrncpy(((ty_'+imixContent.name+'*)object)->m_'+e.name+', field_ele->field_value, 511);\n');
-				 fs.appendFileSync(C_FileName, '\t\t\t'+printSetParaLog('(ty_'+imixContent.name+'*)object->m_'+e.name,'((ty_'+imixContent.name+'*)object)->m_'+e.name,'field_ele->field_value', '%s', 0, 'TRC_DBG', 'ERR_TRC'));
+                fs.appendFileSync(C_FileName, '\t\t\tstrncpy(((ty_'+imixContent.name+'*)object)->c_'+e.name+', field_ele->field_value, 511);\n');
+				 fs.appendFileSync(C_FileName, '\t\t\t'+printSetParaLog('(ty_'+imixContent.name+'*)object->c_'+e.name,'((ty_'+imixContent.name+'*)object)->c_'+e.name,'field_ele->field_value', '%s', 0, 'TRC_DBG', 'ERR_TRC'));
             }
 
-            if (e.type === 'INDC'||e.type === 'INT64') {
-                fs.appendFileSync(C_FileName, '\t\t\t((ty_'+imixContent.name+'*)object)->m_'+e.name+'=atol(field_ele->field_value);\n');
-				fs.appendFileSync(C_FileName, '\t\t\t'+printSetParaLog('(ty_'+imixContent.name+'*)object->m_'+e.name,'((ty_'+imixContent.name+'*)object)->m_'+e.name,'atol(field_ele->field_value)', '%d', 0, 'TRC_DBG', 'ERR_TRC'));
+            if (e.type === 'INDC') {
+                fs.appendFileSync(C_FileName, '\t\t\t((ty_'+imixContent.name+'*)object)->i_'+e.name+'=atoi(field_ele->field_value);\n');
+				fs.appendFileSync(C_FileName, '\t\t\t'+printSetParaLog('(ty_'+imixContent.name+'*)object->i_'+e.name,'((ty_'+imixContent.name+'*)object)->i_'+e.name,'atol(field_ele->field_value)', '%d', 0, 'TRC_DBG', 'ERR_TRC'));
             }
-
+			
+			if (e.type === 'INT64') {
+                fs.appendFileSync(C_FileName, '\t\t\t((ty_'+imixContent.name+'*)object)->l_'+e.name+'=atol(field_ele->field_value);\n');
+				fs.appendFileSync(C_FileName, '\t\t\t'+printSetParaLog('(ty_'+imixContent.name+'*)object->l_'+e.name,'((ty_'+imixContent.name+'*)object)->l_'+e.name,'atol(field_ele->field_value)', '%ld', 0, 'TRC_DBG', 'ERR_TRC'));
+            }
+			
             if (e.type === 'BOOL') {
-                fs.appendFileSync(C_FileName, '\t\t\t((ty_'+imixContent.name+'*)object)->m_'+e.name+'=atol(field_ele->field_value);\n');
-				fs.appendFileSync(C_FileName, '\t\t\t'+printSetParaLog('((ty_'+imixContent.name+'*)object)->m_'+e.name,'((ty_'+imixContent.name+'*)object)->m_'+e.name,'atol(field_ele->field_value)', '%d', 0, 'TRC_DBG', 'ERR_TRC'));
+                fs.appendFileSync(C_FileName, '\t\t\t((ty_'+imixContent.name+'*)object)->b_'+e.name+'=atoi(field_ele->field_value);\n');
+				fs.appendFileSync(C_FileName, '\t\t\t'+printSetParaLog('((ty_'+imixContent.name+'*)object)->b_'+e.name,'((ty_'+imixContent.name+'*)object)->b_'+e.name,'atol(field_ele->field_value)', '%d', 0, 'TRC_DBG', 'ERR_TRC'));
             }
 
             fs.appendFileSync(C_FileName, '\t\t}\n\n');
@@ -157,7 +162,7 @@ function parse(imixContent, fs, C_FileName){
 
             fs.appendFileSync(C_FileName, '\t\tif(tag == '+e.name+')\n\t\t{\n');
             fs.appendFileSync(C_FileName, '\t\t\tCOUNT repeatLength = atol(field_ele->field_value);\n');
-            fs.appendFileSync(C_FileName, '\t\t\t((ty_'+imixContent.name+'*)object)->m_'+e.name+'_Count = repeatLength;\n');
+            fs.appendFileSync(C_FileName, '\t\t\t((ty_'+imixContent.name+'*)object)->i_'+e.name+'_Count = repeatLength;\n');
 
             //重复组内部处理
             fs.appendFileSync(C_FileName, '\t\t\tFIELD_DETAILS all_child_field_array[256];\n');
@@ -183,7 +188,7 @@ function parse(imixContent, fs, C_FileName){
 			fs.appendFileSync(C_FileName, '\t\t\t\t'+'ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC,Info(0),\"'+'Enter struct '+e.name+'[%d]",j);'+'\n');
 			
 			
-            fs.appendFileSync(C_FileName, '\t\t\t\treturnValue = '+funcName+'(child_field_array, child_field_array_length, &(((ty_'+imixContent.name+'*)object)->m_'+e.name+'_Array[j]));\n');
+            fs.appendFileSync(C_FileName, '\t\t\t\treturnValue = '+funcName+'(child_field_array, child_field_array_length, &(((ty_'+imixContent.name+'*)object)->t_'+e.name+'_Array[j]));\n');
             fs.appendFileSync(C_FileName, '\t\t\t\tif(returnValue == FALSE)\n\t\t\t\t{\n');
             fs.appendFileSync(C_FileName, '\t\t\t\t\t'+printLogStr(funcName+' failed', 0, 'TRC_DBG', 'ERR_TRC'));
             fs.appendFileSync(C_FileName, '\t\t\t\t\treturn returnValue;\n');
