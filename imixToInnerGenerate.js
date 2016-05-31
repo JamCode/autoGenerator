@@ -14,29 +14,24 @@ var msgName = process.argv[2];
 var imixJson = imixConvert.getIMIXFormat(msgName, 'imix.xml');
 
 var C_FileName = path.join(__dirname, 'c', msgName+'_convert.c');
-var H_FileName = path.join(__dirname, 'c', msgName+'_convert.h');
+
 var funcName = msgName+'_convert_inner';
 var generateStruct = require('./utility/generateStruct.js');
 
 
 fs.openSync(C_FileName, 'w');
-fs.openSync(H_FileName,'w');
 //define files
 fs.appendFileSync(C_FileName, '/*'+(new Date).toLocaleString() + '*/\n');
 fs.appendFileSync(C_FileName,'#ifndef _'+(msgName+'_convert').toUpperCase()+'_C_\n');
 fs.appendFileSync(C_FileName,'#define _'+(msgName+'_convert').toUpperCase()+'_C_\n\n');
 
-fs.appendFileSync(H_FileName, '/*'+(new Date).toLocaleString() + '*/\n');
-fs.appendFileSync(H_FileName,'#ifndef _'+(msgName+'_convert').toUpperCase()+'_H_\n');
-fs.appendFileSync(H_FileName,'#define _'+(msgName+'_convert').toUpperCase()+'_H_\n\n');
+
 
 //include
 fs.appendFileSync(C_FileName, '#include "Fields.h"\n');
-fs.appendFileSync(C_FileName, '#include "'+msgName+'_convert.h>\n');
 fs.appendFileSync(C_FileName, '#include "Trdx_ErrorLog.h"\n\n');
 
-fs.appendFileSync(H_FileName, '#include "imixToInnerFnctns.h"\n');
-fs.appendFileSync(H_FileName, '#pragma pack(8)\n\n');
+fs.appendFileSync(C_FileName, '#include "imixToInnerFnctns.h"\n');
 
 
 
@@ -52,8 +47,6 @@ defineMainFunc();
 
 
 fs.appendFileSync(C_FileName,'#endif');
-fs.appendFileSync(H_FileName, '#pragma pack()\n');
-fs.appendFileSync(H_FileName,'#endif');
 
 console.log('generate code finish!');
 
@@ -100,7 +93,7 @@ function defineMainFunc(){
 
 function defineInnerStruct(msgName){
     var structDefineStr = generateStruct.generateStruct(msgName, imixJson);
-    fs.appendFileSync(H_FileName, structDefineStr);
+    fs.appendFileSync(C_FileName, structDefineStr);
 }
 
 

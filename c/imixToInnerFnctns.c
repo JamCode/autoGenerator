@@ -1,5 +1,5 @@
 #ifndef _IMIXTOINNERFNCTNS_C_
-#define __IMIXTOINNERFNCTNS_C_
+#define _IMIXTOINNERFNCTNS_C_
 
 #include "Fields.h"
 #include "Trdx_ErrorLog.h"
@@ -95,27 +95,6 @@ BOOL getChildByIndex(FIELD_DETAILS* all_child_field_array,
 			break;
 	}while(strcmp(all_child_field_array[pos].field_name, field_ele.field_name) != 0);
 	return TRUE;
-	/*
-    int i = 0;
-    int j = 0;
-	
-    for (i = 0, j=1; i < index&&j<all_child_field_array_length; ++j) {
-        FIELD_DETAILS ele = all_child_field_array[j];
-        if(ele.field_name == field_ele.field_name){
-            ++i;
-        }
-    }
-
-    ++j;
-
-    for (; j<all_child_field_array_length; ++j) {
-        FIELD_DETAILS ele = all_child_field_array[j];
-        if(ele.field_name != field_ele.field_name){
-            child_field_array[*child_field_array_length] = ele;
-            *child_field_array_length++;
-        }
-    }
-	*/
 
 }
 
