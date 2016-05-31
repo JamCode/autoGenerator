@@ -71,6 +71,7 @@ BOOL getChildByIndex(FIELD_DETAILS* all_child_field_array,
 	/*make pos point to the first element of repeat group*/
 	if(index>0)
 	{
+		pos++;
 		while(pos<all_child_field_array_length)
 		{
 			if(strcmp(all_child_field_array[pos].field_name, field_ele.field_name) == 0)
