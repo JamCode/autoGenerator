@@ -1,8 +1,4 @@
-#ifndef _IMIXTOINNERFNCTNS_C_
-#define __IMIXTOINNERFNCTNS_C_
 
-#include "Fields.h"
-#include "Trdx_ErrorLog.h"
 
 /*get top level nodes */
 BOOL getNodes(FIELD_DETAILS* all_field_array,
@@ -39,7 +35,7 @@ void getChild(FIELD_DETAILS* all_field_array,
 
 	*all_child_field_array_length = 0;
 	for(int i = 0; i< all_field_array_length; ++i){
-		if (strcmp(all_field_array[i].field_name, field_ele->field_name) == 0) {
+		if (all_field_array[i].field_name == field_ele->field_name) {
 			INDC level = callFunc(atoi(all_field_array[i].field_name));
 			for (int j = i+1; j < all_field_array_length; j++) {
 				if (callFunc(atoi(all_field_array[j].field_name)) > level) {
@@ -73,7 +69,7 @@ BOOL getChildByIndex(FIELD_DETAILS* all_child_field_array,
 	{
 		while(pos<all_child_field_array_length)
 		{
-			if(strcmp(all_child_field_array[pos].field_name, field_ele.field_name) == 0)
+			if(all_child_field_array[pos].field_name == field_ele.field_name)
 				repeat++;
 			if(repeat >= index)
 				break;
@@ -93,7 +89,7 @@ BOOL getChildByIndex(FIELD_DETAILS* all_child_field_array,
 		pos++;
 		if(pos>=all_child_field_array_length)
 			break;
-	}while(strcmp(all_child_field_array[pos].field_name, field_ele.field_name) != 0);
+	}while(all_child_field_array[pos].field_name != field_ele.field_name);
 	return TRUE;
 	/*
     int i = 0;
@@ -118,5 +114,3 @@ BOOL getChildByIndex(FIELD_DETAILS* all_child_field_array,
 	*/
 
 }
-
-#endif
