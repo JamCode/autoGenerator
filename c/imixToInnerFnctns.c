@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 #ifndef _IMIXTOINNERFNCTNS_C_
 #define _IMIXTOINNERFNCTNS_C_
-=======
->>>>>>> master
 
 
 /*get top level nodes */
