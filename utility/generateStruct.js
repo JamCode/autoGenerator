@@ -47,16 +47,20 @@ function generate(structName, imixjson){
         e.name = e.name+'_auto';
 
         if (e.type === 'CHAR') {
-            struct += '\t' + e.type + ' m_' + e.name + '[512];/* field number '+e.number+'*/\n';
+            struct += '\t' + e.type + ' c_' + e.name + '[512];/* field number '+e.number+'*/\n';
+        }else if (e.type === 'INT64'){
+            struct += '\t' + e.type + ' l_' + e.name + ';/* field number '+e.number+'*/\n';
+        }else if (e.type === 'BOOL'){
+            struct += '\t' + e.type + ' b_' + e.name + ';/* field number '+e.number+'*/\n';
         }else{
-            struct += '\t' + e.type + ' m_' + e.name + ';/* field number '+e.number+'*/\n';
-        }
+			struct += '\t' + e.type + ' i_' + e.name + ';/* field number '+e.number+'*/\n';
+		}
     });
 
     imixjson.group.forEach(function(e){
         e.name = e.name + '_auto';
-        struct += '\tINT m_' + e.name + '_Count;/* field number '+e.number+' */ \n';
-        struct += '\tty_' + e.name + ' m_' + e.name + '_Array[128];\n';
+        struct += '\tINT i_' + e.name + '_Count;/* field number '+e.number+' */ \n';
+        struct += '\tty_' + e.name + ' t_' + e.name + '_Array[128];\n';
     });
 
     struct += '}ty_'+structName+';\n';
