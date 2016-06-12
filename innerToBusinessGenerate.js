@@ -47,14 +47,15 @@ function eraseSpace(str){
 
 function assignment(tab, target, srcVal, tarType, srcType){
 	if(tarType * srcType === 105*108){
-		fs.appendFileSync(fileName, tab+target+' = '+srcVal+';\n')
+		fs.appendFileSync(fileName, tab + target + ' = ' + srcVal + ';\n')
 	}
 	else if(tarType === 'i' || tarType === 'l'){
-		fs.appendFileSync(fileName,tab + target + '= atol('+srcVal+');\n');
+		fs.appendFileSync(fileName,tab + target + '= atol(' + srcVal + ');\n');
 	}
 	else{
 		fs.appendFileSync(fileName,tab + 'strcpy('+target + ', ltoa('+srcVal+'));\n');
 	}
+	assigmentLog(tab, srcVal, target, srcType, tarType);
 }
 function printEqual(tab, level, target, resource, src, dest){
 	//console.log(resource);
@@ -111,10 +112,6 @@ function printEqual(tab, level, target, resource, src, dest){
 	}
 }
 
-
-
-
-
 function mainFuncDefine(){
     var funcName = config.innerToBusinessConfig.funcName;
     var specialFunc = config.innerToBusinessConfig.special;
@@ -134,6 +131,7 @@ function mainFuncDefine(){
 	//translate business Struct
 	fs.appendFileSync(fileName, '\t' + businessStruct + '*' + businessVar + ';\n');
 	fs.appendFileSync(fileName, '\t' + businessVar + '= (*' + businessStruct +')pInputBuffer;\n');
+	fs.appendFileSync(fileName, '\t\n');
 	
 	console.log('common define finished!');
 	console.log('Enter MainMap');
@@ -222,9 +220,51 @@ function parseMap(tab, level, UPsrc, UPdest, repeatMap){
 		}
 		structIndex++;
 	});
+	fs.appendFileSync(fileName, tab + '\n');
 }
 
+function TypeMapping(type){
+	switch(type){
+		case 'l':
+			return '%ld';
+		case 'i':
+			return '%d';
+		case 'c':
+			return '%s';
+		case 's':
+			return '%s';
+	}
+}
 
+function assigmentLog(tab, src, dest, src_type, dest_type){
+	var logSrc = '';
+	var srcVal = '';
+	var logDest = '';
+	var destVal = '';
+	var begin = 0;
+	var left = 0;
+	var right = 0;
+	while((left = src.indexOf('[index', begin)) !== -1){
+		right = src.indexOf(']',left);
+		srcVal = srcVal + src.substring(left + 1, right)+', ';
+		logSrc = logSrc + src.substring(begin, left+1) + '%d';
+		begin = right;
+	}
+	srcVal = srcVal + src;
+	logSrc = logSrc + src.substr(begin);
+	
+	begin = 0;
+	while((left = dest.indexOf('[index', begin)) !== -1){
+		right = dest.indexOf(']',left);
+		destVal = destVal + dest.substring(left + 1, right)+', ';
+		logDest = logDest + dest.substring(begin, left+1) + '%d';
+		begin = right;
+	}
+	destVal = destVal + dest;
+	logDest = logDest + dest.substr(begin);
+	
+	fs.appendFileSync(fileName, tab + 'ProcessEventLog(__FILE__, __LINE__, TRC_DBG, ERR_TRC, Info(0), "' + logDest + ' is set to ' + TypeMapping(dest_type) + ', The source data is ' + logSrc + '. which value is : ' + TypeMapping(src_type) + '.", ' + destVal + ', ' + srcVal + ');\n\n');
+}
 
 function printLogStr(str, error_code, trc_level, err_level){
     var str = 'ProcessEventLog(__FILE__, __LINE__, '+trc_level+', '+err_level+', Info('+error_code+'), \"'+str+'\");\n';

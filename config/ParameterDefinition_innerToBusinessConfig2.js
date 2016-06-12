@@ -6,7 +6,6 @@ exports.innerToBusinessConfig = {
 	innerVar: 'pParameterDefinition_auto',
 	businessVar: 'pCIMEntityInfo',
 	
-	
 	MainMap:[
 		{
 			src:'.',
