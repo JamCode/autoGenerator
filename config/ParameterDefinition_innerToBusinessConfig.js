@@ -10,11 +10,11 @@ exports.innerToBusinessConfig = {
 			rightStruct:'pParameterDefinition',
 			repeat:false,
 			map:{
-				begin_string = 'c_BeginString_auto[s]',
-				body_length = 'i_Body_Length_auto[i]',
-				msg_seqno = 'i_MsgSeqNum_auto[i]',
-				sender_comp_id = 'c_SenderCompID_auto[s]',
-				target_comp_id = 'c_TargetCompID_auto[s]',
+				begin_string : 'c_BeginString_auto[s]',
+				body_length : 'i_Body_Length_auto[i]',
+				msg_seqno : 'i_MsgSeqNum_auto[i]',
+				sender_comp_id : 'c_SenderCompID_auto[s]',
+				target_comp_id : 'c_TargetCompID_auto[s]',
 			}
 		},
 		{
@@ -24,7 +24,7 @@ exports.innerToBusinessConfig = {
 			length: 'pParameterDefinition->t_NoParameterDefinitions_auto_Array[0].i_NoParameterDefinitionSubID_auto_Count',
 			leftRepeat:false,
 			map:{
-				caEntySubTypeDesc = '{c_ParameterSubIDType_auto = ITEN}c_ParameterSubID_auto[s]'
+				caEntySubTypeDesc : '{c_ParameterSubIDType_auto = "ITEN"}c_ParameterSubID_auto[s]'
 			}
 		},
 	],
